@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import BottomMenuComponent from '../BottomMenuComponent';
+
 import { EFIStackNavigator, ServiceStackNavigator, HomeStackNavigator, DoctorsStackNavigator } from './componentInnerNavigator';
 
 export const Tab = createBottomTabNavigator();
