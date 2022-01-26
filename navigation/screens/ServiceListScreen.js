@@ -43,10 +43,10 @@ function ServiceCard(service) {
         </View>
         <View style={{ flexDirection: "row", paddingTop: 15, paddingBottom: 20 }}>
           <TouchableOpacity style={{ flex: 1, textAlign: "center",paddingHorizontal:2 }}>
-            <Text style={{ color: "#00ADA8" ,fontSize:12,fontWeight:"bold"}} >ЗАДАТЬ ВОПРОС</Text>
+            <Text style={{ color: "#00ADA8" ,fontSize:14,fontWeight:"bold"}} >ЗАДАТЬ ВОПРОС</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ flex: 1, textAlign: "center", fontSize: 10,paddingHorizontal:2 }}>
-            <Text style={{ color: "#00ADA8" ,fontSize:12,fontWeight:"bold"}}>ПОДРОБНЕЕ</Text>
+            <Text style={{ color: "#00ADA8" ,fontSize:14,fontWeight:"bold"}}>ПОДРОБНЕЕ</Text>
           </TouchableOpacity>
         </View>
       </View>

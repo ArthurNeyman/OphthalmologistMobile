@@ -5,7 +5,7 @@ import {View,Text} from "react-native";
 const EFI = () => {
     
     return (
-     <View><Text>EFI</Text></View>
+     <View><Text>Эфи компонент</Text></View>
     );
   };
   
