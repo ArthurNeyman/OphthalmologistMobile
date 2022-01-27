@@ -1,15 +1,15 @@
 import React from 'react';
 import {View,Text} from "react-native";
 
-const NewsScreen = () => {
+const HowSaveEyesightScreen = () => {
     return (
         <View>
             <Text style={textAlign="center"}>
-                Компонент "НОВОСТИ".
+                Компонент "КАК СОХРАНИТЬ ЗРЕНИЕ".
                 В РАЗРАБОТКЕ.
                 ТРЕБУЮТСЯ УТОЧНЕНИЯ.
             </Text>
         </View>
     )
 }
-export default NewsScreen;
+export default HowSaveEyesightScreen;

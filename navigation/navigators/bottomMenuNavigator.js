@@ -5,6 +5,7 @@ import BottomMenuComponent from '../BottomMenuComponent';
 
 import { EFIStackNavigator, ServiceStackNavigator, HomeStackNavigator, DoctorsStackNavigator } from './componentInnerNavigator';
 
+
 export const Tab = createBottomTabNavigator();
 
 const BottomMenuNavigator = ({ active }) => {

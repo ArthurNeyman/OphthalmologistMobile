@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import { setScreen } from '../redux/actions/server_actions';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+
 const DrawerMenuComponent = (props) => {
 
     return (
@@ -41,7 +42,9 @@ const DrawerMenuComponent = (props) => {
                             </View>
                         }>
                         <View style={{ flex: 1 }}>
-                            <TouchableOpacity style={{ flex: 1 }}>
+                            <TouchableOpacity style={{ flex: 1 }}
+                                onPress={() => { props.setScreen("Home");props.navigation.navigate("News") }}
+                                >                                
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Новости</Text>
@@ -55,13 +58,15 @@ const DrawerMenuComponent = (props) => {
                                     <Text style={{ padding: 10, fontSize: 16 }}>Об отделении</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ flex: 1 }}>
+                            <TouchableOpacity style={{ flex: 1 }}
+                                    onPress={() => { props.setScreen("Home");props.navigation.navigate("EyeTreatMethods") }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Методы лечения глаз</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ flex: 1 }}>
+                            <TouchableOpacity style={{ flex: 1 }}
+                                                                onPress={() => { props.setScreen("Home");props.navigation.navigate("HowToSaveEyes") }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Как сохранить зрение</Text>
@@ -95,7 +100,7 @@ const DrawerMenuComponent = (props) => {
                     onPress={() => { props.setScreen("EFI"); props.navigation.navigate("EFI") }}
                 />
                 <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5, }} />
-                <Footer {...props} />
+                {/* <Footer {...props} /> */}
 
             </View>
         </DrawerContentScrollView >

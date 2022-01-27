@@ -10,7 +10,11 @@ import HomeScreen from '../screens/HomeScreen';
 import ServiceListScreen from '../screens/ServiceListScreen';
 import EFIScreen from '../screens/EFIScreen'
 
-
+import NewsScreen from '../screens/NewsScreen'
+import SaveEyes from '../screens/HowSaveEyesightScreen'
+import TreatMethods from '../screens/EyeTreatmentMethods'
+import AskQuestion from '../screens/AskQuestionScreen'
+import ServiceScreen from '../screens/ServiceScreen'
 
 const Stack = createStackNavigator();
 
@@ -33,6 +37,9 @@ export const HomeStackNavigator = () => {
                 animationEnabled: false
             }} >
             <Stack.Screen name="Home" component={props => <HomeScreen {...props} />} />
+            <Stack.Screen name="News" component={props => <NewsScreen {...props} />} />
+            <Stack.Screen name="HowToSaveEyes" component={props => <SaveEyes {...props} />} />
+            <Stack.Screen name="EyeTreatMethods" component={props => <TreatMethods {...props} />} />
         </Stack.Navigator>
     );
 }
@@ -44,6 +51,8 @@ export const ServiceStackNavigator = () => {
                 header: header
             }}>
             <Stack.Screen name="Service" component={ServiceListScreen} />
+            <Stack.Screen name="AskQuestion" component={props => <AskQuestion {...props} />} />
+            <Stack.Screen name="SomeService" component={props => <ServiceScreen {...props} />} />
         </Stack.Navigator>
     );
 }
@@ -56,6 +65,7 @@ export const DoctorsStackNavigator = () => {
             animationEnabled: false
         }} >
         <Stack.Screen name="Doctors" component={DoctorsListScreen} />
+        <Stack.Screen name="AskQuestion" component={props => <AskQuestion {...props} />} />
     </Stack.Navigator>
     );
 }

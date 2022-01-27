@@ -5,8 +5,14 @@ import {View,Text} from "react-native";
 const EFI = () => {
     
     return (
-     <View><Text>Эфи компонент</Text></View>
+     <View>
+        <Text style={textAlign="center"}>
+            Компонент "ЭФИ".
+            В РАЗРАБОТКЕ.
+            ТРЕБУЮТСЯ УТОЧНЕНИЯ.
+        </Text>
+       </View>
     );
   };
-  
+
   export default EFI;

@@ -5,7 +5,13 @@ import {View,Text} from "react-native";
 const OKTScreen = () => {
     
     return (
-     <View><Text>OKTScreen</Text></View>
+     <View>
+        <Text style={textAlign="center"}>
+                Компонент "ОКТ ВРАЧИ".
+                В РАЗРАБОТКЕ.
+                ТРЕБУЮТСЯ УТОЧНЕНИЯ.
+            </Text>
+     </View>
     );
   };
   

@@ -1,15 +1,16 @@
 import React from 'react';
-import {View,Text} from "react-native";
+import { View, Text } from "react-native";
 
-const NewsScreen = () => {
+
+const AskquestionScreen = () => {
     return (
         <View>
             <Text style={textAlign="center"}>
-                Компонент "НОВОСТИ".
+                Компонент "ЗАДАТЬ ВОПРОС".
                 В РАЗРАБОТКЕ.
                 ТРЕБУЮТСЯ УТОЧНЕНИЯ.
             </Text>
         </View>
     )
 }
-export default NewsScreen;
+export default AskquestionScreen;

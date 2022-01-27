@@ -26,21 +26,21 @@ const initialState = {
   surgeonsList: [
     {
       firstName: "Сергей",
-      lastName: "Ивнов",
+      lastName: "Иванов",
       surname: "Сергеевич",
       position: "хирург-офтальмолог",
       info: "тестовая инофрмация"
     },
     {
       firstName: "Сергей",
-      lastName: "Ивнов",
+      lastName: "Иванов",
       surname: "Сергеевич",
       position: "хирург-офтальмолог",
       info: "тестовая инофрмация"
     },
         {
       firstName: "Сергей",
-      lastName: "Ивнов",
+      lastName: "Иванов",
       surname: "Сергеевич",
       position: "хирург-офтальмолог",
       info: "тестовая инофрмация"

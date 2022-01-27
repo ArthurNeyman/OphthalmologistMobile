@@ -1,15 +1,15 @@
 import React from 'react';
 import {View,Text} from "react-native";
 
-const NewsScreen = () => {
+const EyeTreatmentMethods = () => {
     return (
         <View>
             <Text style={textAlign="center"}>
-                Компонент "НОВОСТИ".
+                Компонент "МЕТОДЫ ЛЕЧЕНИЯ ГЛАЗ".
                 В РАЗРАБОТКЕ.
                 ТРЕБУЮТСЯ УТОЧНЕНИЯ.
             </Text>
         </View>
     )
 }
-export default NewsScreen;
+export default EyeTreatmentMethods;

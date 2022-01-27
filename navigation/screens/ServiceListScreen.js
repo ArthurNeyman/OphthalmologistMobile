@@ -9,13 +9,24 @@ import { bindActionCreators } from 'redux';
 
 const ServiceListScreen = (props) => {
 
+  let serviceList=props.serviceList;
+
   return (
     <ScrollView>
       <View>
         <View style={{ padding: 10 }}>
-          <ServiceCard {...props.serviceList[0]} />
-          <ServiceCard {...props.serviceList[1]} />
-          <ServiceCard {...props.serviceList[2]} />
+          <ServiceCard service={serviceList[0]} 
+          ask={()=>props.navigation.navigate("AskQuestion")}
+          more={()=>props.navigation.navigate("SomeService")}
+          />
+          <ServiceCard service={serviceList[1]} 
+          ask={()=>props.navigation.navigate("AskQuestion")}
+          more={()=>props.navigation.navigate("SomeService")}
+          />
+          <ServiceCard service={serviceList[2]} 
+          ask={()=>props.navigation.navigate("AskQuestion")}
+          more={()=>props.navigation.navigate("SomeService")}
+          />
         </View>
       </View>
     </ScrollView>
@@ -29,24 +40,24 @@ function GetImage({ num }) {
   else return <Image source={require("../../src/images/EyeService.png")} />
 }
 
-function ServiceCard(service) {
+function ServiceCard(props) {
   return <Card >
     <View style={{ height: 130, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1 }}>
       <View style={{ alignItems: "center", flex: 2 }}>
-        <GetImage num={service.num} />
-        {/* <Image
-          source={require("../../src/images/EyeService.png")} /> */}
+        <GetImage num={props.service.num} />
       </View>
       <View style={{ flex: 5 }}>
         <View>
-          <Text style={{ paddingTop: 30, paddingEnd: 15, color: "black", fontSize: 20 }}>{service.name}</Text>
+          <Text style={{ paddingTop: 30, paddingEnd: 15, color: "black", fontSize: 20 }}>{props.service.name}</Text>
         </View>
-        <View style={{ flexDirection: "row", paddingTop: 15, paddingBottom: 20 }}>
-          <TouchableOpacity style={{ flex: 1, textAlign: "center",paddingHorizontal:2 }}>
-            <Text style={{ color: "#00ADA8" ,fontSize:14,fontWeight:"bold"}} >ЗАДАТЬ ВОПРОС</Text>
+        <View style={{ flexDirection: "row", paddingTop: 10, paddingBottom: 20 }}>
+          <TouchableOpacity style={{ flex: 1, textAlign: "center",paddingHorizontal:2 }}
+          onPress={()=>props.ask()}>
+            <Text style={{ color: "#00ADA8" ,fontSize:13,fontWeight:"bold"}} >ЗАДАТЬ ВОПРОС</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ flex: 1, textAlign: "center", fontSize: 10,paddingHorizontal:2 }}>
-            <Text style={{ color: "#00ADA8" ,fontSize:14,fontWeight:"bold"}}>ПОДРОБНЕЕ</Text>
+          <TouchableOpacity style={{ flex: 1, textAlign: "center", fontSize: 10,paddingHorizontal:2 }}
+           onPress={()=>props.more()}>
+            <Text style={{ color: "#00ADA8" ,fontSize:13,fontWeight:"bold"}}>ПОДРОБНЕЕ</Text>
           </TouchableOpacity>
         </View>
       </View>

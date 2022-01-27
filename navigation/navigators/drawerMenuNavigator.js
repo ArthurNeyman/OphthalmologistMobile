@@ -11,6 +11,8 @@ import { HomeStackNavigator } from './componentInnerNavigator';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import NewsScreen from "../screens/NewsScreen";
+
 const DrawerNavigator = createDrawerNavigator();
 
 const DrawerMenuNavigator = (props) => {

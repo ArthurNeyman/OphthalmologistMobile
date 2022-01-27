@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { get_clinic_info } from '../../redux/actions/server_actions';
+import { get_clinic_info } from '../../../redux/actions/server_actions';
 
 import { Linking, TouchableOpacity, Text, View, Image, StyleSheet, FlatList } from 'react-native';
 
@@ -22,8 +22,8 @@ const HomeScreen = (props) => {
   const renderContact = ({ item }) => {
     return <View style={{ paddingBottom: 15, flex: 1, flexDirection: "row", alignItems: "center" }}>
       {/* <FontAwesomeIcon style={{paddingStart:10, flex:1}}size={10} color={"#00ADA8"} name="circle" /> */}
-      <Text style={{paddingStart: 15,paddingEnd: 15,flex: 2, fontSize: 16, color: textColor ,fontWeight: "bold"}}>{item.name}</Text>
-      <Text style={{ paddingStart: 15,paddingEnd: 15, flex: 3, fontSize: 18, fontWeight: "bold" ,color: textColor}}>(+7 3842) {item.contact}</Text>
+      <Text style={{paddingStart: 30,flex: 3, fontSize: 18, color: textColor ,fontWeight: "bold"}}>{item.name}</Text>
+      <Text style={{ paddingStart: 30, flex: 3, fontSize: 18, fontWeight: "bold" ,color: textColor}}>(+7 3842) {item.contact}</Text>
       {/* <TouchableOpacity
         style={{ paddingEnd: 20 }}
         onPress={() => {
