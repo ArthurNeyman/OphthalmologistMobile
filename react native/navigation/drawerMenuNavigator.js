@@ -1,17 +1,11 @@
 import * as React from 'react';
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { View } from 'react-native';
 
 import BottomMenuNavigator from './bottomMenuNavigator';
-/*Навигатор бокового меню */
-
-import DrawerMenuComponent from '../DrawerMenuComponent';
-import { HomeStackNavigator } from './componentInnerNavigator';
+import DrawerMenuComponent from '../components/DrawerMenuComponent';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import NewsScreen from "../screens/NewsScreen";
 
 const DrawerNavigator = createDrawerNavigator();
 

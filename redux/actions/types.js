@@ -1,3 +1,0 @@
-export const SET_SCREEN="SET_SCREEN";
-
-export const GET_CLINIC_INFO="GET_CLINIC_INFO";

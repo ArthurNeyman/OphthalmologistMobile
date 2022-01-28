@@ -5,7 +5,7 @@ import { BottomNavigation } from 'react-native-material-ui';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setScreen } from '../redux/actions/server_actions';
+import { setScreen } from '../redux/actions/application_actions';
 
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons"
 import AntDesignIcon from "react-native-vector-icons/AntDesign"

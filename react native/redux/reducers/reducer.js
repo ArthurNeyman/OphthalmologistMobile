@@ -1,6 +1,6 @@
-import { GET_CLINIC_INFO } from "../actions/types";
+import {SET_SCREEN} from "../actions/types";
 
-import { SET_SCREEN } from "../actions/types";
+import {  } from "../actions/types";
 
 const initialState = {
   clinic_info: {
@@ -68,10 +68,6 @@ const initialState = {
 
 const data = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CLINIC_INFO:
-      return {
-        ...state, clinic_info: action.payload
-      };
       case SET_SCREEN:
       return {
         ...state, activeScreen: action.payload

@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
-
-import ToolBarMenu from '../ToolBarMenuComponent';
 import { getHeaderTitle } from '@react-navigation/elements';
 
-//screens
+import ToolBarMenu from '../components/ToolBarMenuComponent';
+
 import DoctorsListScreen from "../screens/DoctorsListScreen"
 import HomeScreen from '../screens/HomeScreen';
 import ServiceListScreen from '../screens/ServiceListScreen';
 import EFIScreen from '../screens/EFIScreen'
-
 import NewsScreen from '../screens/NewsScreen'
-import SaveEyes from '../screens/HowSaveEyesightScreen'
-import TreatMethods from '../screens/EyeTreatmentMethods'
-import AskQuestion from '../screens/AskQuestionScreen'
 import ServiceScreen from '../screens/ServiceScreen'
+import HowSaveEyesightScreen from '../screens/HowSaveEyesightScreen'
+import TreatMethodsScreen from '../screens/EyeTreatmentMethodsScreen'
+import AskQuestionScreen from '../screens/AskQuestionScreen'
 
 const Stack = createStackNavigator();
 
@@ -23,6 +21,10 @@ const getTitle = (routeName) => {
     else if (routeName === "Doctors") return "Врачи"
     else if (routeName === "EFI") return "ЭФИ"
     else if (routeName === "Service") return "Услуги"
+    else if (routeName === "HowToSaveEyes") return "Как сохранить зрение"
+    else if (routeName === "EyeTreatMethods") return "Методы лечения глаз"
+    else if (routeName === "AskQuestion") return "Чат"
+
 }
 
 const header = ({ navigation, route, options }) => {
@@ -38,8 +40,8 @@ export const HomeStackNavigator = () => {
             }} >
             <Stack.Screen name="Home" component={props => <HomeScreen {...props} />} />
             <Stack.Screen name="News" component={props => <NewsScreen {...props} />} />
-            <Stack.Screen name="HowToSaveEyes" component={props => <SaveEyes {...props} />} />
-            <Stack.Screen name="EyeTreatMethods" component={props => <TreatMethods {...props} />} />
+            <Stack.Screen name="HowToSaveEyes" component={props => <HowSaveEyesightScreen {...props} />} />
+            <Stack.Screen name="EyeTreatMethods" component={props => <TreatMethodsScreen {...props} />} />
         </Stack.Navigator>
     );
 }
@@ -51,7 +53,7 @@ export const ServiceStackNavigator = () => {
                 header: header
             }}>
             <Stack.Screen name="Service" component={ServiceListScreen} />
-            <Stack.Screen name="AskQuestion" component={props => <AskQuestion {...props} />} />
+            <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
             <Stack.Screen name="SomeService" component={props => <ServiceScreen {...props} />} />
         </Stack.Navigator>
     );
@@ -65,7 +67,7 @@ export const DoctorsStackNavigator = () => {
             animationEnabled: false
         }} >
         <Stack.Screen name="Doctors" component={DoctorsListScreen} />
-        <Stack.Screen name="AskQuestion" component={props => <AskQuestion {...props} />} />
+        <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
     </Stack.Navigator>
     );
 }

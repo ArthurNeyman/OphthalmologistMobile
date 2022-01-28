@@ -3,8 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { get_clinic_info } from '../../redux/actions/server_actions';
-
 import { Linking, TouchableOpacity, Text, View, Image, StyleSheet, FlatList } from 'react-native';
 
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
@@ -13,11 +11,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 export const textColor="#243329";
 
 const HomeScreen = (props) => {
-
-
-  const useLayoutEffect=()=>{
-    console.log("Home hi");
-  }
   
   const renderContact = ({ item }) => {
     return <View style={{ paddingBottom: 15, flex: 1, flexDirection: "row", alignItems: "center" }}>
@@ -103,7 +96,7 @@ const mapStateToProps = state => {
 }
 
 function matchTo(dispatch) {
-  return bindActionCreators({ get_clinic_info: get_clinic_info }, dispatch)
+  return bindActionCreators({ }, dispatch)
 }
 
 

@@ -10,7 +10,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
 import FontistoIcon from "react-native-vector-icons/Fontisto"
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setScreen } from '../redux/actions/server_actions';
+import { setScreen } from '../redux/actions/application_actions';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
