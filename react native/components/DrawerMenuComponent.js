@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { StyleSheet, Text, View } from 'react-native';
 import { Avatar } from 'react-native-material-ui';
 import DropDownItem from 'react-native-drop-down-item';
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons"
@@ -15,10 +15,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const DrawerMenuComponent = (props) => {
-
     return (
         <DrawerContentScrollView {...props}>
-
             <View style={{ padding: 15, flex: 1, flexDirection: 'row', alignItems: "center" }}>
                 <Avatar style={{ flex: 1, alignItems: "center" }} icon="person" iconColor="#00ADA8" />
                 <View style={{ flex: 10, justifyContent: "center" }}>
@@ -26,16 +24,11 @@ const DrawerMenuComponent = (props) => {
                     <UserName {...props} />
                 </View>
             </View>
-
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }} />
-
             <View style={{ paddingTop: 3 }}>
                 <View style={{ flex: 1 }}>
                     <DropDownItem
-                        // invisibleImage={require("../src/images/downArrow.png")}
-                        // visibleImage={require("../src/images/leftArrow.png")}
                         header={
-                            // style={{ backgroundColor: props.activetab == "aboutUS" ? "rgba(0, 173, 168, 0.12)" : "white" }}
                             <View  style={styles.header} >
                                 <SimpleLineIcon style={{ flex: 1, color: "#00ADA8", paddingStart: 3 }} size={25} name="home" />
                                 <Text style={{ flex: 3.3, fontSize: 20, color: "black", fontFamily: "roboto" }} >Информация</Text>
@@ -111,6 +104,7 @@ function UserName(props) {
     if (props.user == null) return <Text>Гость</Text>
     else return <Text>{props.user.name}</Text>
 }
+
 function Footer(props) {
 
     if (props.user == null) {

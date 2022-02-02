@@ -24,7 +24,7 @@ const getTitle = (routeName) => {
     else if (routeName === "HowToSaveEyes") return "Как сохранить зрение"
     else if (routeName === "EyeTreatMethods") return "Методы лечения глаз"
     else if (routeName === "AskQuestion") return "Чат"
-
+    else if (routeName === "News") return "Новости"
 }
 
 const header = ({ navigation, route, options }) => {

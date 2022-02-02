@@ -41,6 +41,7 @@ function GetImage({ num }) {
 }
 
 function ServiceCard(props) {
+  console.log("Sprops",props)
   return <Card >
     <View style={{ height: 130, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1 }}>
       <View style={{ alignItems: "center", flex: 2 }}>
