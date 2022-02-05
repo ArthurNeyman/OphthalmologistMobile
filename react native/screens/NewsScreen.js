@@ -1,54 +1,26 @@
-import React from 'react';
+
+import React from "react";
 import { useState, useEffect } from 'react';
-import { View, Text, Image, Button } from "react-native";
 import { useSelector, useDispatch } from 'react-redux'
-import { getNewsList } from '../redux/actions/server_actions'
+import { getNews } from '../redux/actions/server_actions'
+import { Text, View } from "react-native";
 
-import { Card } from 'react-native-material-ui';
-import Loader from '../app_loader';
+import Moment from 'moment';
+import Loader from "../app_loader";
 
-const NewsPreview = (props) => {
-    console.log(props);
-    return (
-        <Card style={{ flex: 1 }}>
-            <Image
-                source={{ uri: props.img }} />
-            <Text>
-                {props.name}
-            </Text>
-            <Text>
-                {props.date}
-            </Text>
-            <Button
-                title="Подробнее"
-                onPress={() => console.log("открыть статью " + props.name)}></Button>
-        </Card>
-    )
-}
-
-const NewsScreen = () => {
-
-    const { newsList, loadData } = useSelector(state => state.data)
+const NewsScreen = (props) => {
+    const { news, loadData } = useSelector(state => state.data)
     const dispatch = useDispatch()
-
     useEffect(() => {
-        dispatch(getNewsList());
+        dispatch(getNews(props.route.params.newsId));
     }, []);
-
-    console.log(newsList);
-    return (<>
-    {
-        loadData ? <Loader /> :
+    return (
         <View>
-            {newsList.map(el => <NewsPreview name={el.name} img={el.imgLink} date={el.date} />)}
+        {
+            loadData ? <Loader/> :  <Text> {news.id} </Text>
+        }
         </View>
-    }
-        
-        
-    </>
-
     )
 }
 
 export default NewsScreen;
-

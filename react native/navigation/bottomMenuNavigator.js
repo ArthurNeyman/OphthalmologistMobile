@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import BottomMenuComponent from '../components/BottomMenuComponent';
-import { EFIStackNavigator, ServiceStackNavigator, HomeStackNavigator, DoctorsStackNavigator } from './componentInnerNavigator';
+import { EFIStackNavigator, ServiceStackNavigator, HomeStackNavigator, StaffStackNavigator } from './componentInnerNavigator';
 
 export const Tab = createBottomTabNavigator();
 
@@ -15,7 +15,7 @@ const BottomMenuNavigator = ({ active }) => {
                 headerShown: false
             }}>
             <Tab.Screen name="Home" component={HomeStackNavigator} />
-            <Tab.Screen name="Doctors" component={DoctorsStackNavigator} />
+            <Tab.Screen name="Staff" component={StaffStackNavigator} />
             <Tab.Screen name="Service" component={ServiceStackNavigator} />
             <Tab.Screen name="EFI" component={EFIStackNavigator} />
         </Tab.Navigator>

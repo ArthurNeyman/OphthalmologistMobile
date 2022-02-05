@@ -36,7 +36,7 @@ const DrawerMenuComponent = (props) => {
                         }>
                         <View style={{ flex: 1 }}>
                             <TouchableOpacity style={{ flex: 1 }}
-                                onPress={() => { props.setScreen("Home");props.navigation.navigate("News") }}
+                                onPress={() => { props.setScreen("Home");props.navigation.navigate("NewsList") }}
                                 >                                
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
@@ -68,7 +68,6 @@ const DrawerMenuComponent = (props) => {
                         </View>
                     </DropDownItem>
                 </View>
-
                 <DrawerItem
                     style={{ backgroundColor: props.activetab == "Service" ? "rgba(0, 173, 168, 0.12)" : "white" }}
                     labelStyle={styles.drawerLable}
@@ -76,21 +75,12 @@ const DrawerMenuComponent = (props) => {
                     label="Услуги"
                     onPress={() => { props.setScreen("Service"); props.navigation.navigate("Service") }}
                 />
-
                 <DrawerItem
-                    style={{ backgroundColor: props.activetab == "Doctors" ? "rgba(0, 173, 168, 0.12)" : "white" }}
+                    style={{ backgroundColor: props.activetab == "Staff" ? "rgba(0, 173, 168, 0.12)" : "white" }}
                     labelStyle={styles.drawerLable}
                     icon={() => { return <MaterialIcon size={25} color={"#00ADA8"} name="people-outline" /> }}
-                    label="Врачи"
-                    onPress={() => { props.setScreen("Doctors"); props.navigation.navigate("Doctors") }}
-                />
-
-                <DrawerItem
-                    style={{ backgroundColor: props.activetab == "EFI" ? "rgba(0, 173, 168, 0.12)" : "white" }}
-                    labelStyle={styles.drawerLable}
-                    icon={() => { return <FontistoIcon name="injection-syringe" color={"#00ADA8"} size={25} /> }}
-                    label="ЭФИ"
-                    onPress={() => { props.setScreen("EFI"); props.navigation.navigate("EFI") }}
+                    label="Персонал"
+                    onPress={() => { props.setScreen("Doctors"); props.navigation.navigate("Staff") }}
                 />
                 <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5, }} />
                 {/* <Footer {...props} /> */}
