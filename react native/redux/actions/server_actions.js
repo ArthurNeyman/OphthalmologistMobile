@@ -3,20 +3,18 @@ import {
     GET_NEWS,
     GET_SERVICE_LIST,
     GET_SERVICE,
-    SET_LOAD_STATUS,
     GET_SERVICE_CATEGORIES,
     GET_STAFF_LIST,
     GET_CLINIC_INFO
 } from "./types";
 
+import { setLoadStatus ,setActiveScreen} from "./application_actions";
+
 const URL = "http://82.179.9.51:8080/api"
 
 const get = (urlEnd, inType) => {
     return async dispatch => {
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: true
-        })
+        dispatch(setLoadStatus(true))
         fetch(URL + urlEnd, {
             method: "GET",
             headers: {
@@ -30,10 +28,7 @@ const get = (urlEnd, inType) => {
                     type: inType,
                     payload: json
                 })
-                dispatch({
-                    type: SET_LOAD_STATUS,
-                    payload: false
-                })
+                dispatch(setLoadStatus(false))
             })
             .catch(error => {
                 console.log("GET_ERROR", error)
@@ -43,10 +38,6 @@ const get = (urlEnd, inType) => {
 
 const post = (urlEnd, body, inType) => {
     return async dispatch => {
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: true
-        })
         fetch(URL + urlEnd, {
             method: "POST",
             headers: {
@@ -60,10 +51,6 @@ const post = (urlEnd, body, inType) => {
                 dispatch({
                     type: inType,
                     payload: json
-                })
-                dispatch({
-                    type: SET_LOAD_STATUS,
-                    payload: false
                 })
             })
             .catch(error => {
@@ -83,10 +70,7 @@ export const getNews = (newsId) => {
 
 export const getServiceCatagories = () => {
     return async dispatch => {
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: true
-        })
+        dispatch(setLoadStatus(true))
         dispatch({
             type: GET_SERVICE_CATEGORIES,
             payload: [
@@ -104,10 +88,7 @@ export const getServiceCatagories = () => {
                 }
             ]
         })
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: false
-        })
+        dispatch(setLoadStatus(false))
     }
 }
 
@@ -115,72 +96,31 @@ const getServiceList = (categoryId) => {
     switch (categoryId) {
         case 0: return [
             {
-                id: "1",
+                id: 1,
                 name: "ЭФИ",
-                cost: 0,
-                description: " ЭФИ- электрофизиологическое исследование сетчатки глаза. ЭФИ – это четыре высокоинформативных способа определения функционирования сетчатой оболочки, зрительного нерва, а также зрительных зон коры головного мозга.",
-                images: [],
-                doctor: {
-                    name: "Doct1",
-                    whatsAppContact: 89999999
-                }
             },
             {
-                id: "2",
+                id: 2,
                 name: "ОКТ",
-                cost: 0,
-                description: "Оптическая когерентная томография — метод неинвазивного исследования тонких слоёв кожи и слизистых оболочек, глазных и зубных тканей человека.",
-                images: [],
-                doctor: {
-                    name: "Doct1",
-                    whatsAppContact: 89999999
-                }
             }
         ]
         case 1: return [
             {
-                id: "0",
+                id: 3,
                 name: "Факоэмульсификация катаракты",
-                cost: 0,
-                description: "Факоэмульсификация катаракты с имплантацией гибкой интраокулярной линзы (ИОЛ)",
-                images: [],
-                doctor: {
-                    name: "Doct1",
-                    whatsAppContact: 89999999
-                }
             },
             {
-                id: "1",
+                id: 4,
                 name: "Операции на веках при блефарохолязисе и грыжах орбитальной клетчатки",
-                cost: 0,
-                description: " Операции на веках при блефарохолязисе и грыжах орбитальной клетчатки",
-                images: [],
-                doctor: {
-                    name: "Doct1",
-                    whatsAppContact: 89999999
-                }
             },
             {
-                id: "2",
+                id: 5,
                 name: "Операции на мышцах глаза при косоглазии и птозе",
-                cost: 0,
-                description: " Операции при патологии век и конъюнктиве глаза (вывороте и завороте век, новообразованиях век и конъюнктивы и др.)",
-                images: [],
-                doctor: {
-                    name: "Doct1",
-                    whatsAppContact: 89999999
-                }
             },
             {
-                id: "3",
+                id: 6,
                 name: "Операции при косоглазии и птозе",
-                cost: 0,
-                description: " Операции на мышцах глаза при косоглазии и птозе – опущении верхнего века у пациентов старше 18 лет с привлечение хирургов стробологов",
-                images: [],
-                doctor: {
-                    name: "Doct1",
-                    whatsAppContact: 89999999
-                }
+             
             },
         ]
         case 2: return []
@@ -188,30 +128,99 @@ const getServiceList = (categoryId) => {
     }
 }
 
-export const gerServiceListByCatagory = (categoryId) => {
-    return async dispatch => {
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: true
-        })
+export const getServiceListByCatagory = (categoryId) => {
+     return dispatch => {
         dispatch({
             type: GET_SERVICE_LIST,
             payload: getServiceList(categoryId)
         })
+    }
+}
 
+export const getServiceById = (serviceId) => {
+    console.log(getService(serviceId));
+    return async dispatch => {
         dispatch({
-            type: SET_LOAD_STATUS,
-            payload: false
+            type:GET_SERVICE,
+            action: getService(serviceId)
         })
+    }
+}
+
+const getService = (serviceId) => {
+    switch(serviceId){
+        case 1 : return  {
+            id: "1",
+            name: "ЭФИ",
+            cost: 0,
+            description: " ЭФИ- электрофизиологическое исследование сетчатки глаза. ЭФИ – это четыре высокоинформативных способа определения функционирования сетчатой оболочки, зрительного нерва, а также зрительных зон коры головного мозга.",
+            images: [],
+            doctor: {
+                name: "Doct1",
+                whatsAppContact: 89999999
+            }
+        }
+        case 2  : return  {
+            id: "2",
+            name: "ОКТ",
+            cost: 0,
+            description: "Оптическая когерентная томография — метод неинвазивного исследования тонких слоёв кожи и слизистых оболочек, глазных и зубных тканей человека.",
+            images: [],
+            doctor: {
+                name: "Doct1",
+                whatsAppContact: 89999999
+            }
+        }
+        case 3 : return {
+            id: "3",
+            name: "Факоэмульсификация катаракты",
+            cost: 0,
+            description: "Факоэмульсификация катаракты с имплантацией гибкой интраокулярной линзы (ИОЛ)",
+            images: [],
+            doctor: {
+                name: "Doct1",
+                whatsAppContact: 89999999
+            }
+        }
+        case 4 : return  {
+            id: "4",
+            name: "Операции на веках при блефарохолязисе и грыжах орбитальной клетчатки",
+            cost: 0,
+            description: " Операции на веках при блефарохолязисе и грыжах орбитальной клетчатки",
+            images: [],
+            doctor: {
+                name: "Doct1",
+                whatsAppContact: 89999999
+            }
+        }
+        case 5 : return {
+            id: "5",
+            name: "Операции на мышцах глаза при косоглазии и птозе",
+            cost: 0,
+            description: " Операции при патологии век и конъюнктиве глаза (вывороте и завороте век, новообразованиях век и конъюнктивы и др.)",
+            images: [],
+            doctor: {
+                name: "Doct1",
+                whatsAppContact: 89999999
+            }
+        }
+        case 6 : return {
+            id: "6",
+            name: "Операции при косоглазии и птозе",
+            cost: 0,
+            description: " Операции на мышцах глаза при косоглазии и птозе – опущении верхнего века у пациентов старше 18 лет с привлечение хирургов стробологов",
+            images: [],
+            doctor: {
+                name: "Doct1",
+                whatsAppContact: 89999999
+            }
+        }
+        default : return {}
     }
 }
 
 export const getStaffList = () => {
     return async dispatch => {
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: true
-        })
         dispatch({
             type: GET_STAFF_LIST,
             payload: [
@@ -258,23 +267,12 @@ export const getStaffList = () => {
                 }
             ]
         })
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: false
-        })
     }
 }
 
-export const getStaffById = (staffId) => {
-
-}
 
 export const getClinicInfo = () => {
-    return async dispatch => {
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: true
-        })
+    return  async dispatch => {
         dispatch({
             type: GET_CLINIC_INFO,
             payload: {
@@ -308,10 +306,6 @@ export const getClinicInfo = () => {
                 }
             }
         })
-
-        dispatch({
-            type: SET_LOAD_STATUS,
-            payload: false
-        })
     }
 }
+

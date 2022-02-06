@@ -11,21 +11,21 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  theme : {
+  theme: {
     defaultMainColor: "#00ADA8",
     defaultTextColor: "#243329",
     currentMainColor: "#00ADA8",
     currentTextColor: "#243329",
-    setCurrentMainColor : (newColor) => {
+    setCurrentMainColor: (newColor) => {
       this.currentMainColor = newColor
     }
   },
   clinic_info: {},
   user: null,
   staffList: [],
-  categoryServiceList:[],
-  serviceList:[],
-  activeScreen: "Home",
+  categoryServiceList: [],
+  serviceList: [],
+  activeScreen: GET_CLINIC_INFO,
   newsList: [],
   news: {},
   service: {},
@@ -37,7 +37,11 @@ const data = (state = initialState, action) => {
     case SET_SCREEN:
       return {
         ...state, activeScreen: action.payload
-      };
+      }
+    case SET_LOAD_STATUS:
+      return {
+        ...state, loadData: action.payload
+      }
     case GET_CLINIC_INFO:
       return {
         ...state, clinic_info: action.payload
@@ -50,26 +54,22 @@ const data = (state = initialState, action) => {
       return {
         ...state, news: action.payload
       }
-    case SET_LOAD_STATUS:
-      return {
-        ...state, loadData: action.payload
-      }
     case GET_SERVICE_CATEGORIES:
       return {
         ...state, categoryServiceList: action.payload
       }
-      case GET_SERVICE_LIST:
-        return {
-          ...state, serviceList: action.payload
-        }
-      case GET_SERVICE:
-        return {
-          ...state, service: action.payload
-        }
-      case GET_STAFF_LIST :
-        return {
-          ...state,staffList:action.payload
-        }
+    case GET_SERVICE_LIST:
+      return {
+        ...state, serviceList: action.payload
+      }
+    case GET_SERVICE:
+      return {
+        ...state, service: action.payload
+      }
+    case GET_STAFF_LIST:
+      return {
+        ...state, staffList: action.payload
+      }
     default:
       return state;
   }

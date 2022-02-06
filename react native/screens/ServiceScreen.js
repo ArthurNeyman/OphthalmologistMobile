@@ -1,16 +1,28 @@
 import React from 'react';
-import { View, Text } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+import { ScrollView } from 'react-native-gesture-handler';
+import { Card } from 'react-native-material-ui';
+import { useSelector, useDispatch } from 'react-redux'
+import { getServiceCatagories, gerServiceListByCatagory } from '../redux/actions/server_actions';
+import { useState, useEffect } from 'react';
+import Loader from '../app_loader';
+import { getServiceById } from '../redux/actions/server_actions';
 
+const ServiceScreen = (props) => {
 
-const ServiceScreen = () => {
+  const { service, loadData } = useSelector(state => state.data)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+     dispatch(getServiceById(props.route.params.serviceId));
+  }, []);
+
     return (
-        <View>
-            <Text style={textAlign="center"}>
-                Компонент описывающий отдельную услугу.
-                В РАЗРАБОТКЕ.
-                ТРЕБУЮТСЯ УТОЧНЕНИЯ.
-            </Text>
-        </View>
+        <>
+        {
+            loadData ? <Loader/> : <Text>Download finished</Text>
+        }
+        </>
     )
 }
 export default ServiceScreen;

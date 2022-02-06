@@ -9,7 +9,8 @@ import { getStaffList } from '../redux/actions/server_actions';
 import Loader from '../app_loader';
 import { useState, useEffect } from 'react';
 
-const SurgeonsCard = ({ item }) => {
+const SurgeonsCard = ({staff,navigateProfile}) => {
+  console.log("STAFF_CARD_PROPS",navigateProfile);
   return (
     <View style={{ paddingTop: 5, paddingBottom: 5, }}>
       <Card >
@@ -19,15 +20,15 @@ const SurgeonsCard = ({ item }) => {
           </View>
           <View style={{ flex: 5 }}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Text style={{ flex: 1, color: "black", fontSize: 18, paddingTop: 10, paddingBottom: 3 }}>{item.lastName + " " + item.firstName + " " + item.surname}</Text>
+              <Text style={{ flex: 1, color: "black", fontSize: 18, paddingTop: 10, paddingBottom: 3 }}>{staff.lastName + " " + staff.firstName + " " + staff.surname}</Text>
               <View style={{ padding: 10, alignItems: "center" }}>
                 <TouchableOpacity
-                  onPress={() => { alert("Компонент  ПРОФИЛЬ ВРАЧА в разработке.Какие данные нужно отображать?") }}>
+                  onPress={() => {navigateProfile()}}>
                   <Avatar style={{ container: { backgroundColor: "white", paddingTop: 10 } }} size={30} icon="person" iconColor="#00ADA8" />
                 </TouchableOpacity>
               </View>
             </View>
-            <Text style={{ color: "black", fontSize: 15, paddingTop: 0 }}>{item.position}</Text>
+            <Text style={{ color: "black", fontSize: 15, paddingTop: 0 }}>{staff.position}</Text>
             <View style={{ flexDirection: "row", paddingTop: 15, paddingBottom: 20 }}>
               <TouchableOpacity style={{ flex: 1, textAlign: "center", paddingHorizontal: 2 }}
                 onPress={() => { alert("Компонент  ЗАДАТЬ ВОПРОС ВРАЧУ в разработке. Как должен срабатывать?") }}>
@@ -45,7 +46,7 @@ const SurgeonsCard = ({ item }) => {
   );
 }
 
-const StaffListScreen = () => {
+const StaffListScreen = (props) => {
 
   const { staffList, loadData } = useSelector(state => state.data);
   const dispatch = useDispatch()
@@ -59,10 +60,11 @@ const StaffListScreen = () => {
     <>{
       loadData ? <Loader /> :
         <ScrollView style={{ margin: 15 }}>
-          <FlatList
-            data={staffList}
-            renderItem={SurgeonsCard}
-          />
+          {
+            staffList.map( el=> {
+              return <SurgeonsCard staff={el} navigateProfile={()=>props.navigation.navigate("Staff",{staff:el})}/>
+            })
+          }
         </ScrollView>
     }
 

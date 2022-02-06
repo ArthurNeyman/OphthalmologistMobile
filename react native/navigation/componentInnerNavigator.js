@@ -7,7 +7,6 @@ import ToolBarMenu from '../components/ToolBarMenuComponent';
 import StaffListScreen from "../screens/StaffListScreen"
 import HomeScreen from '../screens/HomeScreen';
 import ServiceCatagoryListScreen from '../screens/ServiceCategoryListScreen';
-import EFIScreen from '../screens/EFIScreen'
 import NewsListScreen from '../screens/NewsListScreen'
 import ServiceScreen from '../screens/ServiceScreen'
 import HowSaveEyesightScreen from '../screens/HowSaveEyesightScreen'
@@ -17,30 +16,38 @@ import NewsScreen from '../screens/NewsScreen';
 import ContactsScreen from '../screens/ContacsScreen';
 import RouteScreen from '../screens/RouteScreen';
 
+import { useSelector, useDispatch } from 'react-redux'
+
+import {
+    GET_CLINIC_INFO,
+    GET_NEWS,
+    GET_NEWS_LIST,
+    GET_SERVICE_CATEGORIES,
+    GET_STAFF_LIST
+} from '../redux/actions/types'
+import ServiceListForCatagoryScreen from '../screens/ServiceListForCatagoryScreen';
+import { StaffScreen } from '../screens/StaffScreen';
+
 const Stack = createStackNavigator();
 
-const getTitle = (routeName) => {
-    if (routeName === "Home") return "О нас"
-    else if (routeName === "Staff") return "Персонал"
-    else if (routeName === "EFI") return "ЭФИ"
-    else if (routeName === "Service") return "Услуги"
-    else if (routeName === "HowToSaveEyes") return "Как сохранить зрение"
-    else if (routeName === "EyeTreatMethods") return "Методы лечения глаз"
-    else if (routeName === "AskQuestion") return "Чат"
-    else if (routeName === "News" || routeName === "NewsList") return "Новости"
-    else if (routeName === "Contacts" ) return "Наши контакты"
-    else if (routeName === "Route" ) return "Как добраться"
-
-
+const getTitleForToolBar = (selectedScreen) => {
+    switch (selectedScreen) {
+        case GET_CLINIC_INFO: return "О нас"
+        case GET_NEWS_LIST || GET_NEWS: return "Новости"
+        case GET_SERVICE_CATEGORIES: return "Услуги"
+        case GET_STAFF_LIST: return "Персонал"
+    }
 }
 
-const header = ({ navigation, route, options }) => {
-    return <ToolBarMenu title={getTitle(getHeaderTitle(options, route.name))} />
+const header = () => {
+    const { activeScreen } = useSelector(state => state.data)
+    return <ToolBarMenu title={getTitleForToolBar(activeScreen)} />
 }
 
-export const HomeStackNavigator = () => {
+export const HomeStackNavigator = (props) => {
     return (
         <Stack.Navigator
+            initialRouteName="Home"
             screenOptions={{
                 header: header,
                 animationEnabled: false
@@ -50,8 +57,8 @@ export const HomeStackNavigator = () => {
             <Stack.Screen name="HowToSaveEyes" component={props => <HowSaveEyesightScreen {...props} />} />
             <Stack.Screen name="EyeTreatMethods" component={props => <TreatMethodsScreen {...props} />} />
             <Stack.Screen name="News" component={props => <NewsScreen {...props} />} />
-            <Stack.Screen name="Contacts" component={(props)=><ContactsScreen {...props}/>} />
-            <Stack.Screen name="Route" component={(props)=><RouteScreen {...props}/>} />
+            <Stack.Screen name="Contacts" component={(props) => <ContactsScreen {...props} />} />
+            <Stack.Screen name="Route" component={(props) => <RouteScreen {...props} />} />
         </Stack.Navigator>
     );
 }
@@ -62,9 +69,10 @@ export const ServiceStackNavigator = () => {
             screenOptions={{
                 header: header
             }}>
-            <Stack.Screen name="Service" component={ServiceCatagoryListScreen} />
+            <Stack.Screen name="ServiceListForCatagory" component={props => <ServiceCatagoryListScreen {...props} />} />
+            <Stack.Screen name="ServiceList" component={props => <ServiceListForCatagoryScreen {...props} />} />
+            <Stack.Screen name="Service" component={props => <ServiceScreen {...props} />} />
             <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
-            <Stack.Screen name="SomeService" component={props => <ServiceScreen {...props} />} />
         </Stack.Navigator>
     );
 }
@@ -72,27 +80,17 @@ export const ServiceStackNavigator = () => {
 export const StaffStackNavigator = () => {
     return (
         <Stack.Navigator
-        screenOptions={{
-            header: header,
-            animationEnabled: false
-        }} >
-        <Stack.Screen name="Staff" component={StaffListScreen} />
-        <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
-    </Stack.Navigator>
-    );
-}
-
-export const EFIStackNavigator = () => {
-    return (
-        <Stack.Navigator
             screenOptions={{
-                header: header
-            }}
-        >
-            <Stack.Screen name="EFI" component={EFIScreen} />
+                header: header,
+                animationEnabled: false
+            }} >
+            <Stack.Screen name="StaffList" component={StaffListScreen} />
+            <Stack.Screen name="Staff" component={StaffScreen} />
+            <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
         </Stack.Navigator>
     );
 }
+
 
 
 

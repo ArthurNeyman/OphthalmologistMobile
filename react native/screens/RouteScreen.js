@@ -2,6 +2,7 @@ import React from "react";
 
 import { Text } from "react-native";
 
+//как добраться
 const RouteScreen =(props)=>{
 
     const address=props.route.params.adddressInfo

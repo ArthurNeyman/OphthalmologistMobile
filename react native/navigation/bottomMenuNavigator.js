@@ -17,7 +17,6 @@ const BottomMenuNavigator = ({ active }) => {
             <Tab.Screen name="Home" component={HomeStackNavigator} />
             <Tab.Screen name="Staff" component={StaffStackNavigator} />
             <Tab.Screen name="Service" component={ServiceStackNavigator} />
-            <Tab.Screen name="EFI" component={EFIStackNavigator} />
         </Tab.Navigator>
     );
 };

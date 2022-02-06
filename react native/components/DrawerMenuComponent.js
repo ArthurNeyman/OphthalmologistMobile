@@ -8,13 +8,15 @@ import AntDesignIcon from "react-native-vector-icons/AntDesign"
 import MaterialIcon from "react-native-vector-icons/MaterialIcons"
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
 import FontistoIcon from "react-native-vector-icons/Fontisto"
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { setScreen } from '../redux/actions/application_actions';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { GET_CLINIC_INFO, GET_SERVICE_CATEGORIES, GET_STAFF_LIST } from '../redux/actions/types';
+import { setActiveScreen } from '../redux/actions/application_actions';
 
 const DrawerMenuComponent = (props) => {
+    const { activeScreen } = useSelector(state => state.data)
+    const dispatch = useDispatch()
+
     return (
         <DrawerContentScrollView {...props}>
             <View style={{ padding: 15, flex: 1, flexDirection: 'row', alignItems: "center" }}>
@@ -29,22 +31,22 @@ const DrawerMenuComponent = (props) => {
                 <View style={{ flex: 1 }}>
                     <DropDownItem
                         header={
-                            <View  style={styles.header} >
+                            <View style={{ ...styles.header, backgroundColor: activeScreen == GET_CLINIC_INFO ? "rgba(0, 173, 168, 0.12)" : "white" }} >
                                 <SimpleLineIcon style={{ flex: 1, color: "#00ADA8", paddingStart: 3 }} size={25} name="home" />
                                 <Text style={{ flex: 3.3, fontSize: 20, color: "black", fontFamily: "roboto" }} >Информация</Text>
                             </View>
                         }>
                         <View style={{ flex: 1 }}>
                             <TouchableOpacity style={{ flex: 1 }}
-                                onPress={() => { props.setScreen("Home");props.navigation.navigate("NewsList") }}
-                                >                                
+                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));props.navigation.navigate("NewsList") }}
+                            >
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Новости</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                onPress={() => { props.setScreen("Home"); props.navigation.navigate("Home") }}
+                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));props.navigation.navigate("Home") }}
                                 style={{ flex: 1 }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
@@ -52,14 +54,14 @@ const DrawerMenuComponent = (props) => {
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ flex: 1 }}
-                                    onPress={() => { props.setScreen("Home");props.navigation.navigate("EyeTreatMethods") }}>
+                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));props.navigation.navigate("EyeTreatMethods") }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Методы лечения глаз</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ flex: 1 }}
-                                                                onPress={() => { props.setScreen("Home");props.navigation.navigate("HowToSaveEyes") }}>
+                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("HowToSaveEyes") }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Как сохранить зрение</Text>
@@ -69,18 +71,18 @@ const DrawerMenuComponent = (props) => {
                     </DropDownItem>
                 </View>
                 <DrawerItem
-                    style={{ backgroundColor: props.activetab == "Service" ? "rgba(0, 173, 168, 0.12)" : "white" }}
+                    style={{ backgroundColor: activeScreen == GET_SERVICE_CATEGORIES ? "rgba(0, 173, 168, 0.12)" : "white" }}
                     labelStyle={styles.drawerLable}
                     icon={() => { return <AntDesignIcon size={25} color={"#00ADA8"} name="profile" /> }}
                     label="Услуги"
-                    onPress={() => { props.setScreen("Service"); props.navigation.navigate("Service") }}
+                    onPress={() => { dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); props.navigation.navigate("Service") }}
                 />
                 <DrawerItem
-                    style={{ backgroundColor: props.activetab == "Staff" ? "rgba(0, 173, 168, 0.12)" : "white" }}
+                    style={{ backgroundColor: activeScreen == GET_STAFF_LIST ? "rgba(0, 173, 168, 0.12)" : "white" }}
                     labelStyle={styles.drawerLable}
                     icon={() => { return <MaterialIcon size={25} color={"#00ADA8"} name="people-outline" /> }}
                     label="Персонал"
-                    onPress={() => { props.setScreen("Doctors"); props.navigation.navigate("Staff") }}
+                    onPress={() => { dispatch(setActiveScreen(GET_STAFF_LIST)); props.navigation.navigate("Staff") }}
                 />
                 <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5, }} />
                 {/* <Footer {...props} /> */}
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         flexWrap: 'wrap',
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     drawerLable: {
         fontSize: 20, width: "100%",
@@ -201,15 +203,4 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => {
-    return {
-        user: state.data.user,
-        activetab: state.data.activeScreen
-    }
-}
-
-function matchTo(dispatch) {
-    return bindActionCreators({ setScreen: setScreen }, dispatch)
-}
-
-export default connect(mapStateToProps, matchTo)(DrawerMenuComponent);
+export default DrawerMenuComponent;
