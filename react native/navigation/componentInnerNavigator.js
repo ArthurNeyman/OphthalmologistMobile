@@ -33,7 +33,7 @@ const Stack = createStackNavigator();
 const getTitleForToolBar = (selectedScreen) => {
     switch (selectedScreen) {
         case GET_CLINIC_INFO: return "О нас"
-        case GET_NEWS_LIST || GET_NEWS: return "Новости"
+        case GET_NEWS_LIST : return "Новости"
         case GET_SERVICE_CATEGORIES: return "Услуги"
         case GET_STAFF_LIST: return "Персонал"
     }
@@ -69,7 +69,7 @@ export const ServiceStackNavigator = () => {
             screenOptions={{
                 header: header
             }}>
-            <Stack.Screen name="ServiceListForCatagory" component={props => <ServiceCatagoryListScreen {...props} />} />
+            <Stack.Screen name="ServiceCatagoryList" component={props => <ServiceCatagoryListScreen {...props} />} />
             <Stack.Screen name="ServiceList" component={props => <ServiceListForCatagoryScreen {...props} />} />
             <Stack.Screen name="Service" component={props => <ServiceScreen {...props} />} />
             <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />

@@ -26,7 +26,7 @@ const BottomMenuComponent = (props) => {
                 key="ServiceListForCatagory"
                 icon={<AntDesignIcon size={25} name="profile" />}
                 label="Услуги"
-                onPress={() => {props.navigation.navigate("Service") }}
+                onPress={() => {props.navigation.navigate("SeServiceCatagoryListrvice") }}
             />
             <BottomNavigation.Action
                 key="Doctors"

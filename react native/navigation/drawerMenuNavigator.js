@@ -10,7 +10,6 @@ import { bindActionCreators } from 'redux';
 const DrawerNavigator = createDrawerNavigator();
 
 const DrawerMenuNavigator = (props) => {
-
   return (
     <DrawerNavigator.Navigator
       screenOptions={{

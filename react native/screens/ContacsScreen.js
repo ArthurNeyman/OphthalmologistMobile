@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, TouchableOpacity, Linking, View, Text, Image, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
 
 const renderContact = ({ item }) => {
@@ -27,7 +28,7 @@ const ContactsScreen = (props) => {
     const contacts = props.route.params.contacts
 
     return (
-        <View>
+        <ScrollView>
             <View>
                 <Image
                     style={{ width: "100%" }}
@@ -57,7 +58,7 @@ const ContactsScreen = (props) => {
                     renderItem={renderContact}
                 />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

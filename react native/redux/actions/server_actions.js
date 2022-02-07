@@ -138,7 +138,6 @@ export const getServiceListByCatagory = (categoryId) => {
 }
 
 export const getServiceById = (serviceId) => {
-    console.log(getService(serviceId));
     return async dispatch => {
         dispatch({
             type:GET_SERVICE,
@@ -270,7 +269,6 @@ export const getStaffList = () => {
     }
 }
 
-
 export const getClinicInfo = () => {
     return  async dispatch => {
         dispatch({
@@ -309,3 +307,77 @@ export const getClinicInfo = () => {
     }
 }
 
+export const getServiceVategoriesByParentCategoryId = (parentCatagoryId) => {
+    return async dispatch => {
+        dispatch({
+            type: GET_SERVICE_CATEGORIES,
+            payload: categories.filter(el=>el.parentId==parentCatagoryId)
+        })
+    }
+}
+
+export const gerServiceListByCatagoryId = (categoryId) => {
+    return dispatch => {
+        dispatch({
+            type: GET_SERVICE_LIST,
+            payload: services.filter(el=>el.categoryId==categoryId)
+        })
+    }
+}
+
+const categories=[
+    {
+        id: 0,
+        name: "Исследования",
+        parentId:null,
+        hasChildren:false
+    },
+    {
+        id: 1,
+        name: "Амбулаторные операции",
+        parentId:null,
+        hasChildren:true
+    },
+    {
+        id: 2,
+        name: "Медикаментозное лечение",
+        parentId:null,
+        hasChildren:false
+    },
+    {
+        id: 3,
+        name: "Операции на веках при блефарохолязисе и грыжах орбитальной клетчатки",
+        parentId:1,
+        hasChildren:false
+    },
+    {
+        id: 4,
+        name: "Операции на мышцах глаза при косоглазии и птозе",
+        parentId:1,
+        hasChildren:false
+    },
+    {
+        id: 5,
+        name: "Операции при косоглазии и птозе",
+        parentId:1,
+        hasChildren:false     
+    }
+]
+
+const services=[
+    {
+        id: 1,
+        name: "ЭФИ",
+        categoryId:0
+    },
+    {
+        id: 2,
+        name: "ОКТ",
+        categoryId:0
+    },
+    {
+        id: 3,
+        name: "Факоэмульсификация катаракты",
+        categoryId : null
+    }
+]

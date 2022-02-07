@@ -10,7 +10,6 @@ import Loader from '../app_loader';
 import { useState, useEffect } from 'react';
 
 const SurgeonsCard = ({staff,navigateProfile}) => {
-  console.log("STAFF_CARD_PROPS",navigateProfile);
   return (
     <View style={{ paddingTop: 5, paddingBottom: 5, }}>
       <Card >

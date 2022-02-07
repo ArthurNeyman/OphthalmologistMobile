@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { GET_CLINIC_INFO,GET_SERVICE_CATEGORIES,GET_STAFF_LIST } from '../redux/actions/types';
 import { setActiveScreen } from '../redux/actions/application_actions';
 import { CommonActions } from '@react-navigation/native';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 const BottomMenuComponent = (props) => {
     
@@ -25,7 +26,12 @@ const BottomMenuComponent = (props) => {
                 key={GET_CLINIC_INFO}
                 icon={<SimpleLineIcon size={25} name="home" />}
                 label="О нас"
-                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("Home");}}
+                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));        
+                    props.navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'Home' }]
+                   })
+                }}
             />
             <BottomNavigation.Action
                 style={{
@@ -35,7 +41,13 @@ const BottomMenuComponent = (props) => {
                 key={GET_SERVICE_CATEGORIES}
                 icon={<AntDesignIcon size={25} name="profile" />}
                 label="Услуги"
-                onPress={() => {dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); props.navigation.navigate("Service") }}
+                onPress={() => {
+                    dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); 
+                    props.navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'ServiceCatagoryList' }]
+                   })
+                }}
             />
             <BottomNavigation.Action
                 style={{
@@ -45,7 +57,13 @@ const BottomMenuComponent = (props) => {
                 key={GET_STAFF_LIST}
                 icon={<MaterialIcon size={25} name="people-outline" />}
                 label="Персонал"
-                onPress={() => {dispatch(setActiveScreen(GET_STAFF_LIST));props.navigation.navigate("Staff") }}
+                onPress={() => {
+                    dispatch(setActiveScreen(GET_STAFF_LIST))
+                    props.navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'Staff' }]
+                   })               
+                }}
             />
         </BottomNavigation>
     );
