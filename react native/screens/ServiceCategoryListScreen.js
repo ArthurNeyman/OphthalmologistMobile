@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux'
-import { gerServiceListByCatagoryId, getServiceCatagories, gerServiceListByCatagory, getServiceVategoriesByParentCategoryId } from '../redux/actions/server_actions';
+import { gerServiceListByCatagoryId, getServiceCategoriesByParentCategoryId } from '../redux/actions/server_actions';
 import { useState, useEffect } from 'react';
 import Loader from '../app_loader';
 
@@ -15,7 +15,7 @@ const ServiceCatagoryListScreen = (props) => {
   const parentId = props.route.params ? props.route.params.parentId ? props.route.params.parentId : null : null
 
   useEffect(() => {
-    dispatch(getServiceVategoriesByParentCategoryId(parentId));
+    dispatch(getServiceCategoriesByParentCategoryId(parentId));
     if (!parentId) dispatch(gerServiceListByCatagoryId(null))
   }, []);
   
@@ -31,7 +31,7 @@ const ServiceCatagoryListScreen = (props) => {
                   id={el.id}
                   name={el.name}
                   toAsck={() => alert("В разработке")}
-                  toNavigate={() => props.navigation.navigate("Service", { serviceId: el.id })}
+                  toNavigate={() => props.navigation.navigate("Service", { service: el })}
                 />
               }
               )

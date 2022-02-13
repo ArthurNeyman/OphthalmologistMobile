@@ -19,7 +19,7 @@ const NewsListScreen = (props) => {
         <>
             {
                 loadData ? <Loader /> :
-                    <ScrollView horizontal={false}>
+                    <ScrollView>
                         {newsList.map(el =>
                             <TouchableOpacity
                                 onPress={() => { props.navigation.navigate("News", { newsId: el.id }) }}>

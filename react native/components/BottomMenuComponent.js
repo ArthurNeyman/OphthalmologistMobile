@@ -43,10 +43,12 @@ const BottomMenuComponent = (props) => {
                 label="Услуги"
                 onPress={() => {
                     dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); 
-                    props.navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'ServiceCatagoryList' }]
-                   })
+                //     props.navigation.reset({
+                //         index: 0,
+                //         routes: [{ name: 'ServiceCatagoryList' }]
+                //    })
+                props.navigation.navigate("ServiceList")
+
                 }}
             />
             <BottomNavigation.Action
@@ -56,13 +58,14 @@ const BottomMenuComponent = (props) => {
                 }}
                 key={GET_STAFF_LIST}
                 icon={<MaterialIcon size={25} name="people-outline" />}
-                label="Персонал"
+                label="Сотрудники"
                 onPress={() => {
                     dispatch(setActiveScreen(GET_STAFF_LIST))
-                    props.navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'Staff' }]
-                   })               
+                    props.navigation.navigate("StaffList")
+                //     props.navigation.reset({
+                //         index: 0,
+                //         routes: [{ name: 'Staff' }]
+                //    })               
                 }}
             />
         </BottomNavigation>

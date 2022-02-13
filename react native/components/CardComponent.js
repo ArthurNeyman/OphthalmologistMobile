@@ -30,9 +30,6 @@ const  CardComponent = ({id,name,toAsck,toNavigate}) => {
 }
 
 function GetImage({ num }) {
-    if (num == 0) return <Image source={require("../../src/images/investigation.png")} />
-    else if (num == 1) return <Image source={require("../../src/images/OperatingTableService.png")} />
-    else if (num == 2) return <Image source={require("../../src/images/MedicineService.png")} />
-    else return <Image source={require("../../src/images/EyeService.png")} />
+  return <Image source={require("../../src/images/investigation.png")} />
 }
 export default CardComponent;

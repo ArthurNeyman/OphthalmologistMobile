@@ -7,7 +7,8 @@ import {
   GET_SERVICE_LIST,
   GET_SERVICE,
   GET_SERVICE_CATEGORIES,
-  GET_STAFF_LIST
+  GET_STAFF_LIST,
+  GET_STAFF
 } from "../actions/types";
 
 const initialState = {
@@ -70,6 +71,10 @@ const data = (state = initialState, action) => {
       return {
         ...state, staffList: action.payload
       }
+      case GET_STAFF:
+        return {
+          ...state, staff: action.payload
+        }
     default:
       return state;
   }

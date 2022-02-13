@@ -75,14 +75,14 @@ const DrawerMenuComponent = (props) => {
                     labelStyle={styles.drawerLable}
                     icon={() => { return <AntDesignIcon size={25} color={"#00ADA8"} name="profile" /> }}
                     label="Услуги"
-                    onPress={() => { dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); props.navigation.navigate("Service") }}
+                    onPress={() => { dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); props.navigation.navigate("ServiceList") }}
                 />
                 <DrawerItem
                     style={{ backgroundColor: activeScreen == GET_STAFF_LIST ? "rgba(0, 173, 168, 0.12)" : "white" }}
                     labelStyle={styles.drawerLable}
                     icon={() => { return <MaterialIcon size={25} color={"#00ADA8"} name="people-outline" /> }}
-                    label="Персонал"
-                    onPress={() => { dispatch(setActiveScreen(GET_STAFF_LIST)); props.navigation.navigate("Staff") }}
+                    label="Сотрудники"
+                    onPress={() => { dispatch(setActiveScreen(GET_STAFF_LIST)); props.navigation.navigate("StaffList") }}
                 />
                 <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5, }} />
                 {/* <Footer {...props} /> */}

@@ -25,8 +25,10 @@ import {
     GET_SERVICE_CATEGORIES,
     GET_STAFF_LIST
 } from '../redux/actions/types'
-import ServiceListForCatagoryScreen from '../screens/ServiceListForCatagoryScreen';
+import ServiceListScreen from '../screens/ServiceListScreen';
 import { StaffScreen } from '../screens/StaffScreen';
+import AbouteScreen from '../screens/AboutScreen';
+import QuastionsAndAnswersScreen from '../screens/QuastionsAndAnswersScreen';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +37,7 @@ const getTitleForToolBar = (selectedScreen) => {
         case GET_CLINIC_INFO: return "О нас"
         case GET_NEWS_LIST : return "Новости"
         case GET_SERVICE_CATEGORIES: return "Услуги"
-        case GET_STAFF_LIST: return "Персонал"
+        case GET_STAFF_LIST: return "Сотрудники"
     }
 }
 
@@ -59,6 +61,9 @@ export const HomeStackNavigator = (props) => {
             <Stack.Screen name="News" component={props => <NewsScreen {...props} />} />
             <Stack.Screen name="Contacts" component={(props) => <ContactsScreen {...props} />} />
             <Stack.Screen name="Route" component={(props) => <RouteScreen {...props} />} />
+            <Stack.Screen name="Aboute" component={(props) => <AbouteScreen {...props} />} />
+            <Stack.Screen name="QuastionsAndAnswers" component={(props) => <QuastionsAndAnswersScreen {...props} />} />
+
         </Stack.Navigator>
     );
 }
@@ -69,10 +74,8 @@ export const ServiceStackNavigator = () => {
             screenOptions={{
                 header: header
             }}>
-            <Stack.Screen name="ServiceCatagoryList" component={props => <ServiceCatagoryListScreen {...props} />} />
-            <Stack.Screen name="ServiceList" component={props => <ServiceListForCatagoryScreen {...props} />} />
+            <Stack.Screen name="ServiceList" component={props => <ServiceListScreen {...props} />} />
             <Stack.Screen name="Service" component={props => <ServiceScreen {...props} />} />
-            <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
         </Stack.Navigator>
     );
 }
