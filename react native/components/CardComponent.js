@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, Dimensions, } from "react-native";
 import { Card } from 'react-native-material-ui';
 
-const  CardComponent = ({id,name,toAsck,toNavigate}) => {
+const CardComponent = ({ id, name, toNavigate }) => {
+    const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
     return (
-        <Card onPress={()=>toNavigate()}>
-            <View style={{ height: 130, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1 }}>
+        <Card onPress={() => toNavigate()}>
+            <View style={{ height: windowsHeight * 0.25, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1 }}>
                 <View style={{ alignItems: "center", flex: 2 }}>
                     <GetImage num={id} />
                 </View>
@@ -14,14 +15,6 @@ const  CardComponent = ({id,name,toAsck,toNavigate}) => {
                         <Text style={{ paddingTop: 30, paddingEnd: 15, color: "black", fontSize: 20 }}>{name}</Text>
                     </View>
                     <View style={{ flexDirection: "row", paddingTop: 10, paddingBottom: 20 }}>
-                        {/* <TouchableOpacity style={{ flex: 1, textAlign: "center", paddingHorizontal: 2 }}
-                            onPress={() => toAsck()}>
-                            <Text style={{ color: "#00ADA8", fontSize: 13, fontWeight: "bold" }} >ЗАДАТЬ ВОПРОС</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 1, textAlign: "center", fontSize: 10, paddingHorizontal: 2 }}
-                            onPress={() => { toNavigate() }}>
-                            <Text style={{ color: "#00ADA8", fontSize: 13, fontWeight: "bold" }}>ПОДРОБНЕЕ</Text>
-                        </TouchableOpacity> */}
                     </View>
                 </View>
             </View>
@@ -30,6 +23,6 @@ const  CardComponent = ({id,name,toAsck,toNavigate}) => {
 }
 
 function GetImage({ num }) {
-  return <Image source={require("../../src/images/investigation.png")} />
+    return <Image source={require("../../src/images/investigation.png")} />
 }
 export default CardComponent;

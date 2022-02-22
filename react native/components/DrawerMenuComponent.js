@@ -13,12 +13,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { GET_CLINIC_INFO, GET_SERVICE_CATEGORIES, GET_STAFF_LIST } from '../redux/actions/types';
 import { setActiveScreen } from '../redux/actions/application_actions';
 
+import { routes } from '../redux/actions/application_actions';
+
 const DrawerMenuComponent = (props) => {
-    const { activeScreen } = useSelector(state => state.data)
+    const { activeScreen ,theme,user} = useSelector(state => state.data)
     const dispatch = useDispatch()
 
+    const MyDrawerItem = (props) => {
+        return <DrawerItem
+            style={{ backgroundColor: activeScreen == props.route.viewName ? "rgba(0, 173, 168, 0.12)" : "white" }}
+            labelStyle={styles.drawerLable}
+            icon={() => { return <SimpleLineIcon size={25} color={theme.defaultMainColor} name={props.route.iconName} /> }}
+            label={props.route.viewName}
+            onPress={() => { props.navigation.navigate(props.route.routeName) }}
+        />
+    }
     return (
         <DrawerContentScrollView {...props}>
+
             <View style={{ padding: 15, flex: 1, flexDirection: 'row', alignItems: "center" }}>
                 <Avatar style={{ flex: 1, alignItems: "center" }} icon="person" iconColor="#00ADA8" />
                 <View style={{ flex: 10, justifyContent: "center" }}>
@@ -26,19 +38,21 @@ const DrawerMenuComponent = (props) => {
                     <UserName {...props} />
                 </View>
             </View>
+
             <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5 }} />
+
             <View style={{ paddingTop: 3 }}>
                 <View style={{ flex: 1 }}>
                     <DropDownItem
                         header={
                             <View style={{ ...styles.header, backgroundColor: activeScreen == GET_CLINIC_INFO ? "rgba(0, 173, 168, 0.12)" : "white" }} >
                                 <SimpleLineIcon style={{ flex: 1, color: "#00ADA8", paddingStart: 3 }} size={25} name="home" />
-                                <Text style={{ flex: 3.3, fontSize: 20, color: "black", fontFamily: "roboto" }} >Информация</Text>
+                                <Text style={{ flex: 3.3, fontSize: 20, color: "black", fontFamily: "roboto" }} >Главная</Text>
                             </View>
                         }>
                         <View style={{ flex: 1 }}>
                             <TouchableOpacity style={{ flex: 1 }}
-                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));props.navigation.navigate("NewsList") }}
+                                onPress={() => { props.navigation.navigate("NewsList") }}
                             >
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
@@ -46,7 +60,7 @@ const DrawerMenuComponent = (props) => {
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));props.navigation.navigate("Home") }}
+                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("Home") }}
                                 style={{ flex: 1 }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
@@ -54,7 +68,7 @@ const DrawerMenuComponent = (props) => {
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ flex: 1 }}
-                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO));props.navigation.navigate("EyeTreatMethods") }}>
+                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("EyeTreatMethods") }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
                                     <Text style={{ padding: 10, fontSize: 16 }}>Методы лечения глаз</Text>
@@ -70,24 +84,16 @@ const DrawerMenuComponent = (props) => {
                         </View>
                     </DropDownItem>
                 </View>
-                <DrawerItem
-                    style={{ backgroundColor: activeScreen == GET_SERVICE_CATEGORIES ? "rgba(0, 173, 168, 0.12)" : "white" }}
-                    labelStyle={styles.drawerLable}
-                    icon={() => { return <AntDesignIcon size={25} color={"#00ADA8"} name="profile" /> }}
-                    label="Услуги"
-                    onPress={() => { dispatch(setActiveScreen(GET_SERVICE_CATEGORIES)); props.navigation.navigate("ServiceList") }}
-                />
-                <DrawerItem
-                    style={{ backgroundColor: activeScreen == GET_STAFF_LIST ? "rgba(0, 173, 168, 0.12)" : "white" }}
-                    labelStyle={styles.drawerLable}
-                    icon={() => { return <MaterialIcon size={25} color={"#00ADA8"} name="people-outline" /> }}
-                    label="Сотрудники"
-                    onPress={() => { dispatch(setActiveScreen(GET_STAFF_LIST)); props.navigation.navigate("StaffList") }}
-                />
+
+                <MyDrawerItem route={routes["ServiceList"]} {...props}/>
+                <MyDrawerItem route={routes["StaffList"]} {...props}/>
+
                 <View style={{ borderBottomColor: 'black', borderBottomWidth: 0.5, }} />
+                
                 {/* <Footer {...props} /> */}
 
             </View>
+
         </DrawerContentScrollView >
     )
 }

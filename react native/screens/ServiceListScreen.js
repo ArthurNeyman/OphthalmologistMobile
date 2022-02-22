@@ -6,6 +6,8 @@ import { getServiceList } from "../redux/actions/server_actions"
 import Loader from '../app_loader';
 import CardComponent from '../components/CardComponent';
 import { ScrollView } from 'react-native-gesture-handler';
+import { setActiveScreen } from '../redux/actions/application_actions';
+
 
 const ServiceListScreen = (props) => {
 
@@ -14,6 +16,7 @@ const ServiceListScreen = (props) => {
 
     useEffect(() => {
         dispatch(getServiceList());
+        props.navigation.addListener("focus",()=>dispatch(setActiveScreen(props.route.name)))
     }, []);
 
     return (

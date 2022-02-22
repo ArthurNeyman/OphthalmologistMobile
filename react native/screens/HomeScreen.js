@@ -1,17 +1,11 @@
-import React from 'react';
-import { Linking, TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
-import { ScrollView } from 'react-native-gesture-handler';
-import { useEffect } from 'react';
-import AntDesignIcon from "react-native-vector-icons/AntDesign"
-import MaterialIcon from "react-native-vector-icons/MaterialIcons"
-import { setActiveScreen } from '../redux/actions/application_actions';
-import { getClinicInfo } from "../redux/actions/server_actions"
-import { GET_STAFF_LIST,GET_SERVICE_CATEGORIES } from '../redux/actions/types';
-export const textColor = "#243329";
-
+import React, { useEffect } from 'react';
+import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
 
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
+import { ScrollView } from 'react-native-gesture-handler';
+import { setActiveScreen,routes } from '../redux/actions/application_actions';
+import { getClinicInfo } from "../redux/actions/server_actions"
 import { Card } from 'react-native-material-ui';
 
 const HomeScreen = (props) => {
@@ -20,50 +14,50 @@ const HomeScreen = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getClinicInfo());
+    dispatch(getClinicInfo())
+    props.navigation.addListener("focus", () => dispatch(setActiveScreen(props.route.name)))
   }, []);
 
   return (
     <ScrollView>
-      <View>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Image
           style={{ width: "100%" }}
           source={require('../../src/images/HomePageImage.png')} />
-      </View>
-
-      <View style={{ paddingTop: 15 }}>
-        <Text style={styles.boldText}>{clinic_info.name}</Text>
+        <View style={{ position: "absolute", justifyContent: "center", alignItems: "center" }}>
+          <Text style={{ fontSize: 25, color: "black", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "white", textShadowOffset: { width: 3, heigth: 1 } }}>{clinic_info.name}</Text>
+        </View>
       </View>
 
       <View style={{ padding: 10 }} >
-        <Text style={{ fontSize: 20, textAlign: "center" }}>
-       {clinic_info.shortDescription}
+        <Text style={{ fontSize: 30, color: "black", textAlign: "center" }}>
+          {clinic_info.shortDescription}
         </Text>
       </View>
 
       <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
         <TouchableOpacity style={{ flex: 1 }}
-          onPress={() => {dispatch(setActiveScreen(GET_SERVICE_CATEGORIES));props.navigation.navigate("ServiceList")}}>
+          onPress={() => { props.navigation.navigate("ServiceList") }}>
           <Card>
             <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-              <AntDesignIcon size={25} size={30} color={theme.currentMainColor} name="profile" />
+              {routes["ServiceList"].icon()}
               <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Услуги</Text>
             </View>
           </Card>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ flex: 1 }}
-          onPress={() => {dispatch(setActiveScreen(GET_STAFF_LIST));props.navigation.navigate("StaffList");}}>
+          onPress={() => { props.navigation.navigate("StaffList"); }}>
           <Card>
             <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-              <MaterialIcon size={30} color={theme.currentMainColor} name="people-outline" />
+              {routes["StaffList"].icon()}
               <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Сотрудники</Text>
             </View>
           </Card>
         </TouchableOpacity>
+
       </View>
       <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-
 
         <TouchableOpacity style={{ flex: 1 }}
           onPress={() => props.navigation.navigate("QuastionsAndAnswers")}>
@@ -87,7 +81,6 @@ const HomeScreen = (props) => {
 
         </TouchableOpacity>
       </View>
-
       <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
 
 
@@ -118,15 +111,16 @@ const HomeScreen = (props) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   simpleText: {
-    color: textColor,
+    color: "#243329",
     fontSize: 20,
     padding: 5,
     textAlign: "center"
   },
   boldText: {
-    color: textColor,
+    color: "#243329",
     fontSize: 20,
     padding: 5,
     fontWeight: "bold",

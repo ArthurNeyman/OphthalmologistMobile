@@ -2,35 +2,36 @@ import React from 'react';
 import { Toolbar } from "react-native-material-ui";
 import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector} from 'react-redux'
+import { StyleSheet } from 'react-native';
 
-const ToolBarMenu = ({title}) => {
+const ToolBarMenu = () => {
 
     const navigation = useNavigation();
     const index=navigation.getState().index;
 
+    const { activeScreen, theme } = useSelector(state => state.data)
+
     return (
         <Toolbar 
-        style={{container:{backgroundColor:"white"},titleText:{color:"black"},leftElement:{color:"gray"},rightElement:{color:"gray"}}}
+        style={styles.toolbarStyle}
         onLeftElementPress={() => { 
             if(index==0)
                 navigation.dispatch(DrawerActions.toggleDrawer())
             else navigation.goBack();
         }}
         leftElement= {index==0 ? "menu" : "keyboard-backspace"}
-        centerElement={title}
-        // searchable={{
-        //     autoFocus: true,
-        //     placeholder: 'Search',
-        // }}
-        // rightElement={{
-        //     menu: {
-        //         icon: "more-vert",
-        //         labels: ["item 1", "item 2"]
-        //     }
-        // }}
-        // onRightElementPress={(label) => { }}
+        centerElement={activeScreen}
     />
     );
 };
+
+const styles = StyleSheet.create({
+   toolbarStyle:{
+       container:{backgroundColor:"white"},
+       titleText:{color:"black"},
+       leftElement:{color:"gray"},
+       rightElement:{color:"gray"}}
+  });
 
 export default ToolBarMenu;
