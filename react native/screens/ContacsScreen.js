@@ -26,9 +26,7 @@ const RenderContact = ({ item }) => {
 }
 
 const ContactsScreen = (props) => {
-
     const contacts = props.route.params.contacts
-
     return (
         <ScrollView>
             <View>
@@ -37,16 +35,16 @@ const ContactsScreen = (props) => {
                     source={require('../../src/images/HomePageImage.png')} />
             </View>
             <View style={{ paddingTop: 10 }}>
-                <Text style={styles.boldText}>{contacts.mainContact.name}</Text>
+                <Text style={styles.boldText}>{contacts.mainContacts[0].name}</Text>
             </View>
             <TouchableOpacity
-                onPress={() => { linkToWhatsApp(contacts.mainContact.contact) }}
+                onPress={() => { linkToWhatsApp(contacts.mainContacts[0].contact) }}
                 style={{ justifyContent: "center", flexDirection: "row", alignItems: "center", padding: 0 }}>
                 <FontAwesomeIcon style={{ padding: 15 }} name="whatsapp" color={"#00ADA8"} size={50} />
-                <Text style={{ ...styles.boldText, fontSize: 25 }}>{contacts.mainContact.contact}</Text>
+                <Text style={{ ...styles.boldText, fontSize: 25 }}>{contacts.mainContacts[0].contact}</Text>
             </TouchableOpacity>
             <View >
-                <Text style={{ ...styles.boldText, paddingBottom: 15 }}>Контакты</Text>
+                <Text style={{ ...styles.boldText, paddingBottom: 15 }}>Другие контакты</Text>
                 {contacts.contacts.map(contact => <RenderContact item={contact} />)}
             </View>
         </ScrollView>

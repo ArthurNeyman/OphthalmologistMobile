@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 const AbouteScreen = () => {
     return (
         <View>
-            <Text style={{textAlign:"center"}}>
+            <Text style={{textAlign:"center",color:"black"}}>
             Компонент 
             В РАЗРАБОТКЕ.
         </Text>

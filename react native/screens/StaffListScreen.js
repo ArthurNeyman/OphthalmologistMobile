@@ -19,12 +19,12 @@ const StaffCard = ({ staff, navigateProfile }) => {
       <TouchableOpacity
         onPress={() => { navigateProfile() }}>
         <Card >
-          <View style={{ minHeight: windowsHeight * 0.25, maxHeight: windowsHeight * 0.15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1, padding: 5 }}>
+          <View style={{ minHeight: windowsHeight * 0.15, maxHeight: windowsHeight * 0.15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1, padding: 5 }}>
             <View style={{ alignItems: "center", flex: 2 }}>
               <FontistoIcon name="doctor" size={80} color={"#00ADA8"} />
             </View>
             <View style={{ flex: 5, justifyContent: "center", alignContent: "center", padding: 5 }}>
-              <Text style={{ color: "black", fontSize: 22, paddingTop: 10, paddingBottom: 3 }}>{staff.lastName + " " + staff.firstName + " " + staff.surname}</Text>
+              <Text style={{ color: "black", fontSize: 22, paddingTop: 10, paddingBottom: 3 }}>{staff.last_name + " " + staff.first_name + " " + staff.surname}</Text>
               <Text style={{ color: "black", fontSize: 18, paddingTop: 0 }}>{staff.position}</Text>
             </View>
           </View>
@@ -46,14 +46,17 @@ const StaffListScreen = (props) => {
   }, []);
 
   return (
-    <ScrollView style={{ margin: 15 }}>
+    <>
       {
-        loadData ? <Loader /> :
-          staffList.map(el => {
-            return <StaffCard staff={el} navigateProfile={() => props.navigation.navigate("Staff", { id: el.id })} />
-          })
+        loadData ? <Loader /> : <ScrollView style={{ margin: 15 }}>
+          {
+            staffList.map(el => {
+              return <StaffCard staff={el} navigateProfile={() => props.navigation.navigate("Staff", { id: el.id })} />
+            })
+          }
+        </ScrollView>
       }
-    </ScrollView>
+    </>
   );
 };
 

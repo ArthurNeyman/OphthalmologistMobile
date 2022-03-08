@@ -5,13 +5,15 @@ import {
     GET_SERVICE,
     GET_STAFF_LIST,
     GET_STAFF,
-    GET_CLINIC_INFO
+    GET_CLINIC_INFO,
+    GET_ANSWERS
 } from "./types";
 
 import { setLoadStatus, setActiveScreen } from "./application_actions";
 
 const URL = "http://82.179.9.51:8080/api"
 
+//--------------------------------------------------------------
 const getUrlParamsRow = (params) => {
     let urlParams = ""
     if (params != null) {
@@ -21,13 +23,13 @@ const getUrlParamsRow = (params) => {
                 urlParams += (el + "=" + params[i][el]) + (i != params.length - 1 ? "&" : "")
             )
     }
+    console.log("URL_PARAMS", urlParams);
     return urlParams
 }
-
 const get = (urlEnd, inType, params) => {
     return async dispatch => {
-        dispatch(setLoadStatus(true))
-        fetch(URL + urlEnd + getUrlParamsRow(params), {
+        await dispatch(setLoadStatus(true))
+        await fetch(URL + urlEnd + getUrlParamsRow(params), {
             method: "GET",
             headers: {
                 Accept: 'application/json',
@@ -40,14 +42,15 @@ const get = (urlEnd, inType, params) => {
                     type: inType,
                     payload: json
                 })
-                dispatch(setLoadStatus(false))
             })
             .catch(error => {
-                console.log("GET_ERROR", error)
+                console.log("GET_ERROR_FOR_" + inType, error)
             })
+        setTimeout(() => {
+                dispatch(setLoadStatus(false))
+        }, 800);
     }
 }
-
 const post = (urlEnd, inType, body) => {
     return async dispatch => {
         fetch(URL + urlEnd, {
@@ -66,94 +69,72 @@ const post = (urlEnd, inType, body) => {
                 })
             })
             .catch(error => {
-                console.log("POST_ERROR", error)
+                console.log("POST_ERROR_FOR_" + inType, error)
             })
     }
 
 }
-
+//-----------------------SERVICES--------------------------------
+export const getServiceList = () => {
+    return get("/user/services", GET_SERVICE_LIST)
+}
+export const getServiceById = (serviceId) => {
+    return get("/user/services", GET_SERVICE, [{ "serviceId": serviceId }])
+}
+//---------------------------NEWS--------------------------------
 export const getNewsList = () => {
     return get("/user/news", GET_NEWS_LIST)
 }
-
 export const getNews = (newsId) => {
     return get("/user/news", GET_NEWS, [{ "newsId": newsId }])
 }
-
-export const getServiceById = (serviceId) => {
-    return async dispatch => {
-        dispatch({
-            type: GET_SERVICE,
-            action: services.filter(el => el.id == serviceId)[0]
-        })
-    }
-}
-
-export const getClinicInfo = () => {
-    return async dispatch => {
-        dispatch({
-            type: GET_CLINIC_INFO,
-            payload: {
-                name: "Кузбасская областная клиническая больница им. С.В. Беляева, хирургическое отделение № 7",
-                shortDescription: "Хирургия катаракты и не только",
-                contacts:
-                {
-                    mainContact: {
-                        name: "Заведующий отделением № 7, Хатминский Николай Юрьевич",
-                        contact: "+79131238881"
-                    },
-                    contacts: [
-                        {
-                            name: "Сall центр",
-                            contact: "39-65-33"
-                        },
-                        {
-                            name: "Отделение № 7",
-                            contact: "39-60-58"
-                        },
-                        {
-                            name: "Отделение № 7",
-                            contact: "68-10-96"
-                        }
-                    ]
-                },
-                address: {
-                    postIndex: "650066",
-                    address: "г. Кемерово, пр-т Октябрьский, 22",
-                    comments: ["Отделение располагается на втором этаже офтальмологического корпуса ГАУЗ КОКБ им. С.В. Беляева"]
-                }
-            }
-        })
-    }
-}
-
+//---------------------------STAFFS------------------------------
 export const getStaffList = () => {
-    return dispatch => {
-        dispatch({
-            type: GET_STAFF_LIST,
-            payload: staffs
-        })
-    }
+    return get("/user/doctors", GET_STAFF_LIST)
 }
-
-export const getServiceList = () => {
-    return dispatch => {
-        dispatch({
-            type: GET_SERVICE_LIST,
-            payload: services
-        })
-    }
-}
-
 export const getStaff = (staffId) => {
-    return async dispatch => {
-        dispatch({
-            type: GET_STAFF,
-            payload: staffs.filter(el => el.id == staffId)[0]
-        })
-    }
+    return get("/user/doctors", GET_STAFF, [{ "doctorId": staffId }])
+}
+//---------------------------------------------------------------
+export const getClinicInfo = () => {
+    return get("/user/info-clinic", GET_CLINIC_INFO, [{ "clinicId": 1 }])
+}
+export const getAnswers = () => {
+    return get("/user/faq", GET_ANSWERS)
 }
 
+const clinic_info = {
+
+    name: "Кузбасская областная клиническая больница им. С.В. Беляева, хирургическое отделение № 7",
+    shortDescription: "Хирургия катаракты и не только",
+    contacts:
+    {
+        mainContact: {
+            name: "Заведующий отделением № 7, Хатминский Николай Юрьевич",
+            contact: "+79131238881"
+        },
+        contacts: [
+            {
+                name: "Сall центр",
+                contact: "39-65-33"
+            },
+            {
+                name: "Отделение № 7",
+                contact: "39-60-58"
+            },
+            {
+                name: "Отделение № 7",
+                contact: "68-10-96"
+            }
+        ]
+    },
+    address: {
+        postIndex: "650066",
+        address: "г. Кемерово, пр-т Октябрьский, 22",
+        comments: ["Отделение располагается на втором этаже офтальмологического корпуса ГАУЗ КОКБ им. С.В. Беляева"]
+    }
+
+}
 const staffs = [
     {
         id: 1,
@@ -163,7 +144,7 @@ const staffs = [
         position: "Заведующий отделением",
         category: "к.м.н., Врач высшей категории",
         info: "Автор ряда патентов и рацпредложений.Имеет награды областного и федерального значения",
-        whatsAppContact:"+79131238881"
+        whatsAppContact: "+79131238881"
     },
     {
         id: 2,
@@ -173,7 +154,7 @@ const staffs = [
         position: "Заведующая отделением",
         category: "к.м.н.",
         info: "",
-        whatsAppContact:""
+        whatsAppContact: ""
     },
     {
         id: 3,
@@ -183,7 +164,7 @@ const staffs = [
         position: "Старшая медицинская сестра",
         category: "Высшая категория",
         info: "",
-        whatsAppContact:""
+        whatsAppContact: ""
     },
     {
         id: 4,
@@ -193,8 +174,9 @@ const staffs = [
         position: "Врач-офтальмолог",
         category: "Врач высшей категории",
         info: "Специализируется на амбулаторной хирургии при заболеваниях век, конъюнктивы."
-            + "Так же занимается консервативным лечением при воспалительных заболеваниях глаза (кератит, склерит, иридоциклит, хориоретинит), глаукоме, заболеваниях сетчатки." ,
-            whatsAppContact:"" },
+            + "Так же занимается консервативным лечением при воспалительных заболеваниях глаза (кератит, склерит, иридоциклит, хориоретинит), глаукоме, заболеваниях сетчатки.",
+        whatsAppContact: ""
+    },
     {
         id: 5,
         firstName: "Нина",
@@ -204,7 +186,8 @@ const staffs = [
         category: "Врач высшей категории",
         info: "Специализация - пластическая хирургия век.Выполняет операции по коррекции блефарохолязиса, грыж орбитальной клетчатки."
         ,
-        whatsAppContact:"" },
+        whatsAppContact: ""
+    },
     {
         id: 6,
         firstName: "Дарья ",
@@ -214,7 +197,8 @@ const staffs = [
         category: "Врач высшей категории",
         info: "Специализируется на курации пациентов с различной патологией,выполняет операции экстренные и плановые на веках, конъюнктиве"
         ,
-        whatsAppContact:""},
+        whatsAppContact: ""
+    },
     {
         id: 7,
         firstName: "Дарья ",
@@ -224,7 +208,8 @@ const staffs = [
         category: "-",
         info: "-"
         ,
-        whatsAppContact:""}
+        whatsAppContact: ""
+    }
     ,
     {
         id: 8,
@@ -235,9 +220,9 @@ const staffs = [
         category: "-",
         info: "-"
         ,
-        whatsAppContact:""}
+        whatsAppContact: ""
+    }
 ];
-
 const services = [
     {
         id: 1,

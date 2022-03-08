@@ -16,28 +16,27 @@ const ServiceListScreen = (props) => {
 
     useEffect(() => {
         dispatch(getServiceList());
-        props.navigation.addListener("focus",()=>dispatch(setActiveScreen(props.route.name)))
+        props.navigation.addListener("focus", () => dispatch(setActiveScreen(props.route.name)))
     }, []);
 
     return (
-        <ScrollView>
-            {
-                loadData ? <Loader /> :
+        <>
+            {loadData ? <Loader /> :
+                <ScrollView>
                     <View style={{ padding: 5 }}>
                         {
                             serviceList.map(el => {
                                 return <CardComponent
                                     id={el.id}
                                     name={el.name}
-                                    toAsck={() => alert("В разработке")}
-                                    toNavigate={() => props.navigation.navigate("Service", { service: el })}
+                                    toNavigate={() => props.navigation.navigate("Service", { id: el.id })}
                                 />
-                            }
-                            )
+                            })
                         }
                     </View>
+                </ScrollView>
             }
-        </ScrollView>
+        </>
     )
 }
 export default ServiceListScreen;

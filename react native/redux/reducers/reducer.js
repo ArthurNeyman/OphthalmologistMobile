@@ -8,7 +8,8 @@ import {
   GET_SERVICE,
   GET_SERVICE_CATEGORIES,
   GET_STAFF_LIST,
-  GET_STAFF
+  GET_STAFF,
+  GET_ANSWERS
 } from "../actions/types";
 
 const initialState = {
@@ -31,6 +32,7 @@ const initialState = {
   newsList: [],
   news: {},
   service: {},
+  answers:[],
   loadData: false
 };
 
@@ -75,6 +77,10 @@ const data = (state = initialState, action) => {
       case GET_STAFF:
         return {
           ...state, staff: action.payload
+        }
+        case GET_ANSWERS:
+        return {
+          ...state, answers: action.payload
         }
     default:
       return state;

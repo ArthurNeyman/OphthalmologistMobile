@@ -56,29 +56,31 @@ const DrawerMenuComponent = (props) => {
                             >
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
-                                    <Text style={{ padding: 10, fontSize: 16 }}>Новости</Text>
+                                    <Text style={{ padding: 10, fontSize: 16,color:"black" }}>Новости</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("Home") }}
+                                // onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("Home") }}
                                 style={{ flex: 1 }}>
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
-                                    <Text style={{ padding: 10, fontSize: 16 }}>Об отделении</Text>
+                                    <Text style={{ padding: 10, fontSize: 16,color:"black" }}>Об отделении</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ flex: 1 }}
-                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("EyeTreatMethods") }}>
+                                // onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("EyeTreatMethods") }}
+                                >
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
-                                    <Text style={{ padding: 10, fontSize: 16 }}>Методы лечения глаз</Text>
+                                    <Text style={{ padding: 10, fontSize: 16,color:"black" }}>Методы лечения глаз</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity style={{ flex: 1 }}
-                                onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("HowToSaveEyes") }}>
+                                // onPress={() => { dispatch(setActiveScreen(GET_CLINIC_INFO)); props.navigation.navigate("HowToSaveEyes") }}
+                                >
                                 <View style={{ flex: 1, flexDirection: "row", alignItems: "center", flex: 1 }}>
                                     <FontAwesomeIcon style={{ paddingStart: 50 }} size={10} color={"#00ADA8"} name="circle" />
-                                    <Text style={{ padding: 10, fontSize: 16 }}>Как сохранить зрение</Text>
+                                    <Text style={{ padding: 10, fontSize: 16 ,color:"black"}}>Как сохранить зрение</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>

@@ -6,7 +6,7 @@ const CardComponent = ({ id, name, toNavigate }) => {
     const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
     return (
         <Card onPress={() => toNavigate()}>
-            <View style={{ height: windowsHeight * 0.25, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1 }}>
+            <View style={{ height: windowsHeight * 0.15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1 }}>
                 <View style={{ alignItems: "center", flex: 2 }}>
                     <GetImage num={id} />
                 </View>
