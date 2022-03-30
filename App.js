@@ -8,6 +8,8 @@ import DrawerMenuNavigator from './react native/navigation/drawerMenuNavigator';
 import { Provider } from "react-redux"
 import Store from "./react native/redux/store"
 
+import { StatusBar } from 'react-native';
+
 import SplashScreen from 'react-native-splash-screen'
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
 
   return (
     <Provider store={Store}>
+                  <StatusBar translucent backgroundColor='transparent' />
       <NavigationContainer>
         <DrawerMenuNavigator />
       </NavigationContainer>

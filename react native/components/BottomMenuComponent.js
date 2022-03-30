@@ -40,8 +40,8 @@ const BottomMenuComponent = (props) => {
 
 const styles = StyleSheet.create({
     activeButton: {
-        icon: { color: "#00ADA8" },
-        label: { color: "#00ADA8" }
+        icon: { color: "#27757f" },
+        label: { color: "#27757f" }
     },
     defaultButton: {
         icon: { color: "black" },

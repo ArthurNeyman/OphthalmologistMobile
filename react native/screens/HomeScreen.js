@@ -1,13 +1,24 @@
 import React, { useEffect } from 'react';
-import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, Image, StyleSheet, ImageBackground,StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux'
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
+import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons"
+
 import { ScrollView } from 'react-native-gesture-handler';
 import { setActiveScreen, routes } from '../redux/actions/application_actions';
 import { getClinicInfo } from "../redux/actions/server_actions"
-import { Card } from 'react-native-material-ui';
 import Loader from '../app_loader';
 
+const Button = ({ iconName, onPress, text }) => {
+  return <>
+    <View style={{ flex: 1, flexDirection: "column", padding: 10 }}>
+      <TouchableOpacity style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        onPress={() => onPress()}>
+        <SimpleLineIcon style={{ flex: 1 }} name={iconName} size={50} color={"#27757f"} />
+        <Text style={{ flex: 1, fontSize: 20, color: "black", textAlign: "center" }}>{text}</Text>
+      </TouchableOpacity>
+    </View>
+  </>
+}
 const HomeScreen = (props) => {
 
   const { clinic_info, loadData, theme } = useSelector(state => state.data)
@@ -15,98 +26,45 @@ const HomeScreen = (props) => {
 
   useEffect(() => {
     dispatch(getClinicInfo())
-    props.navigation.addListener("focus", () => dispatch(setActiveScreen(props.route.name)))
+    // props.navigation.addListener("focus", () => dispatch(setActiveScreen(props.route.name)))
   }, []);
 
   return (
     <>
       {
         loadData ? <Loader /> :
-          <ScrollView>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-              <Image
-                style={{ width: "100%" }}
-                source={require('../../src/images/HomePageImage.png')} />
-              <View style={{ position: "absolute", justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ fontSize: 25, color: "black", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "white", textShadowOffset: { width: 3, heigth: 1 } }}>{clinic_info.name}</Text>
+          <ImageBackground style={{ flex: 1 }} source={require('../../src/images/back.png')}>
+            <View style={{ flex: 1, width: "100%", heigth: "100%", paddingTop: 200 }}>
+              <View style={{ position: "absolute", paddingTop: 35, width: "100%" }}>
+                <Text style={{ fontSize: 25, color: "white", textAlign: "center", padding: 5 }}>{clinic_info.name}</Text>
               </View>
+              <ScrollView style={{ backgroundColor: "white", borderTopRightRadius: 30, borderTopLeftRadius: 30 }}>
+                <View style={{ flex: 1, alignItems: "center" }} >
+                  <View style={{ flex: 1, flexDirection: "row" }}>
+                    <Image
+                      resizeMode="contain"
+                      style={{ flex: 1, height: 250 }}
+                      source={require('../../src/images/services_main_icon.png')} />
+                  </View>
+                  <Text style={{ flex: 1, fontSize: 22, padding: 10, color: "#27757f", textAlign: "center" ,fontWeight:"bold"}}>
+                    {clinic_info.shortDescription}
+                  </Text>
+                </View>
+                <View style={{ paddingTop: 5 }}>
+                  <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                    <Button text={"Услуги"} iconName={"list"} onPress={() => props.navigation.navigate("ServiceList")} />
+                    <Button text={"Сотрудники"} iconName={"people"} onPress={() => props.navigation.navigate("StaffList")} />
+                    <Button text={"Новости"} iconName={"event"} onPress={() => props.navigation.navigate("NewsList")} />
+                  </View>
+                  <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                    <Button text={"Как добраться"} iconName={"directions"} onPress={() => props.navigation.navigate("Route", { adddressInfo: clinic_info.address })} />
+                    <Button text={"Контакты"} iconName={"phone"} onPress={() => props.navigation.navigate("Contacts", { contacts: clinic_info.contacts })} />
+                    <Button text={"Вопрос/Ответ"} iconName={"bubbles"} onPress={() => props.navigation.navigate("QuastionsAndAnswers")} />
+                  </View>
+                </View>
+              </ScrollView>
             </View>
-            <View style={{ padding: 10 }} >
-              <Text style={{ fontSize: 25, color: "black", textAlign: "center" }}>
-                {clinic_info.shortDescription}
-              </Text>
-            </View>
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => { props.navigation.navigate("ServiceList") }}>
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    {routes["ServiceList"].icon()}
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Услуги</Text>
-                  </View>
-                </Card>
-              </TouchableOpacity>
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => { props.navigation.navigate("StaffList"); }}>
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    {routes["StaffList"].icon()}
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Сотрудники</Text>
-                  </View>
-                </Card>
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => props.navigation.navigate("QuastionsAndAnswers")}>
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    <FontAwesomeIcon name="question-circle" size={30} color={theme.currentMainColor} />
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Вопрос / ответ</Text>
-                  </View>
-                </Card>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => props.navigation.navigate("Aboute")}>
-
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    <FontAwesomeIcon name="building-o" size={30} color={theme.currentMainColor} />
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Об отделении</Text>
-                  </View>
-                </Card>
-
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-
-
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => props.navigation.navigate("Route", { adddressInfo: clinic_info.address })}>
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    <FontAwesomeIcon name="map" size={30} color={theme.currentMainColor} />
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Как добраться</Text>
-                  </View>
-                </Card>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => props.navigation.navigate("Contacts", { contacts: clinic_info.contacts })}>
-
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    <FontAwesomeIcon name="phone" size={30} color={theme.currentMainColor} />
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Контакты</Text>
-                  </View>
-                </Card>
-
-              </TouchableOpacity>
-            </View>
-
-          </ScrollView>
+          </ImageBackground>
       }
     </>
   );

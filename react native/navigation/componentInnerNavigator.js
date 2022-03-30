@@ -51,7 +51,8 @@ export const HomeStackNavigator = (props) => {
         <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
-                header: header,
+                // header: header,
+                headerShown: false,
                 animationEnabled: false
             }} >
             <Stack.Screen name="Home" component={props => <HomeScreen {...props} />} />
@@ -63,7 +64,6 @@ export const HomeStackNavigator = (props) => {
             <Stack.Screen name="Route" component={(props) => <RouteScreen {...props} />} />
             <Stack.Screen name="Aboute" component={(props) => <AbouteScreen {...props} />} />
             <Stack.Screen name="QuastionsAndAnswers" component={(props) => <QuastionsAndAnswersScreen {...props} />} />
-
         </Stack.Navigator>
     );
 }
@@ -72,7 +72,8 @@ export const ServiceStackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                header: header
+                headerShown: false
+                // header: header
             }}>
             <Stack.Screen name="ServiceList" component={props => <ServiceListScreen {...props} />} />
             <Stack.Screen name="Service" component={props => <ServiceScreen {...props} />} />
@@ -86,7 +87,8 @@ export const StaffStackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                header: header,
+                // header: header,
+                headerShown: false,
                 animationEnabled: false
             }} >
             <Stack.Screen name="StaffList" component={StaffListScreen} />

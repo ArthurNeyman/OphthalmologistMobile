@@ -1,4 +1,9 @@
 {
   "name": "Ophthalmologist",
-  "displayName": "Ophthalmologist"
+  "displayName": "Ophthalmologist",
+  "expo": {
+    "androidNavigationBar": {
+      "visible": "immersive"
+    }
+  }
 }
