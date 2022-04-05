@@ -84,8 +84,8 @@ const ServiceScreen = (props) => {
                         </Text>
                         {
                             service.description ?
-                                <Text style={{ flex: 1, color: "black", fontSize: 20, padding: 20, textAlign: "left" }}>
-                                    {"\t   " + service.description.split("<br/>").join("\n    ")}
+                                <Text style={styles.text}>
+                                    {" \t "+service.description.split("<br/>").join("\n \t ")}
                                 </Text> :
                                 <></>
                         }
@@ -134,6 +134,11 @@ const styles = StyleSheet.create({
         padding: 10
     },
     item: {
+    },
+    text:{
+        color: "black", 
+        fontSize: 20,
+        padding:10
     }
 });
 

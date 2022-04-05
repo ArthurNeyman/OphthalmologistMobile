@@ -1,8 +1,10 @@
 import React from "react";
-import { FlatList, TouchableOpacity, Linking, View, Text, Image, StyleSheet } from "react-native";
+import { TouchableOpacity, Linking, View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
 import { linkToWhatsApp } from "../redux/actions/application_actions";
+
+const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
 
 
 const RenderContact = ({ item }) => {
@@ -29,11 +31,15 @@ const ContactsScreen = (props) => {
     const contacts = props.route.params.contacts
     return (
         <ScrollView>
-            <View>
-                <Image
-                    style={{ width: "100%" }}
-                    source={require('../../src/images/HomePageImage.png')} />
-            </View>
+            <Image
+                style={{
+                    width: windowWidth,
+                    resizeMode: 'contain',
+                    height: 260
+                }}
+
+                resizeMode="contain"
+                source={require('../../src/images/contact.png')} />
             <View style={{ paddingTop: 10 }}>
                 <Text style={styles.boldText}>{contacts.mainContacts[0].name}</Text>
             </View>

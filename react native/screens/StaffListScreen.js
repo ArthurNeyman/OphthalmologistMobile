@@ -19,7 +19,7 @@ const StaffCard = ({ staff, navigateProfile }) => {
       <TouchableOpacity
         onPress={() => { navigateProfile() }}>
         <Card >
-          <View style={{ minHeight: windowsHeight * 0.15, maxHeight: windowsHeight * 0.15, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1, padding: 5 }}>
+          <View style={{ minHeight: windowsHeight * 0.15, minHeight: windowsHeight * 0.10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1, padding: 5 }}>
             <View style={{ alignItems: "center", flex: 2 }}>
               <FontistoIcon name="doctor" size={80} color={"#00ADA8"} />
             </View>

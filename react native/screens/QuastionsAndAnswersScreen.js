@@ -32,7 +32,6 @@ const QuastionsAndAnswersScreen = () => {
                                         <DropDownItem
                                             // invisibleImage={QUESTION}        
                                             // visibleImage={ANSWER}
-                                            style={{ bakgroundColor: "red" }}
                                             header={
                                                 <View style={{ flex: 1, flexDirection: "row", padding: 5}}>
                                                     <Text style={{ backgroundColor:"#00ADA8",borderRadius:10,flex: 6, fontSize: 24, color: "white", fontFamily: "roboto", fontWeight: "bold",padding:5}} >

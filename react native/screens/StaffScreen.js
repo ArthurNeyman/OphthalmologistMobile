@@ -27,11 +27,11 @@ export const StaffScreen = (props) => {
                             <View style={{ flex: 1, padding: 20, flexDirection: "row", justifyContent: "center" }}>
                                 {
                                     staff.imgLink == null ?
-                                        <FontistoIcon name="doctor" size={130} color={"#00ADA8"} /> :
+                                        <FontistoIcon name="doctor" size={100} color={"#00ADA8"} /> :
                                         <Image source={{ uri: staff.imgLink }} style={styles.imageStyle} />
                                 }
                             </View>
-                            <Text style={{ flex: 1, fontSize: 30, textAlign: "center", padding: 10, color: "black" }}>
+                            <Text style={{ flex: 1, fontSize: 24, textAlign: "center", padding: 10, color: "black" }}>
                                 {staff.first_name + " " + staff.surname + " " + staff.last_name}
                             </Text >
                             <Text style={{ flex: 1, fontSize: 20, textAlign: "center", padding: 10, color: "black" }}>
@@ -44,16 +44,15 @@ export const StaffScreen = (props) => {
                                 borderBottomColor: 'black',
                                 borderBottomWidth: 1,
                                 padding: 3,
-                                margin: 10
+                                margin: 5
                             }}></View>
-                            <Text style={{ flex: 1, padding: 10, fontSize: 20, textAlign: "center", color: "black" }}>
-                                {staff.description != null ? staff.description.replace("<br/>","\n") : ""}
+                            <Text style={{ flex: 1, padding: 20, fontSize: 20,  color: "black" }}>
+                                {staff.description != null ? " \t "+staff.description.replace("<br/>","\n \t") : ""}
                             </Text>
                             {
                                 staff.phoneNumber!=null ?
                                     <View>
-                                        <Text style={{ flex: 1, padding: 10, fontSize: 20, color: "black" }}>
-                                            Связаться со специалистом можно через WhatsApp по номеру :
+                                        <Text style={{ flex: 1, padding: 20, fontSize: 20, color: "black" }}>    Связаться со специалистом можно через WhatsApp по номеру :
                                         </Text>
                                         <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignContent: "center", padding: 10 }}>
                                             <Text style={{ flex: 6, padding: 10, fontSize: 30, color: "black", textAlign: "right", marginTop: 30 }}>{staff.phoneNumber}</Text>

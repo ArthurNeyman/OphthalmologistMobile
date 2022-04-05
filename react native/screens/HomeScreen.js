@@ -26,9 +26,9 @@ const HomeScreen = (props) => {
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
               <Image
                 style={{ width: "100%" }}
-                source={require('../../src/images/HomePageImage.png')} />
+                source={require('../../src/images/HomePageImage1.png')} />
               <View style={{ position: "absolute", justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ fontSize: 25, color: "black", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "white", textShadowOffset: { width: 3, heigth: 1 } }}>{clinic_info.name}</Text>
+                <Text style={{ fontSize: 30, color: "white", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "black"}}>{clinic_info.name}</Text>
               </View>
             </View>
             <View style={{ padding: 10 }} >
@@ -69,12 +69,12 @@ const HomeScreen = (props) => {
               </TouchableOpacity>
 
               <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => props.navigation.navigate("Aboute")}>
+                onPress={() => props.navigation.navigate("NewsList")}>
 
                 <Card>
                   <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    <FontAwesomeIcon name="building-o" size={30} color={theme.currentMainColor} />
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Об отделении</Text>
+                    <FontAwesomeIcon name="newspaper-o" size={30} color={theme.currentMainColor} />
+                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Новости</Text>
                   </View>
                 </Card>
 
