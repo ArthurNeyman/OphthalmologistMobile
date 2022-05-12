@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet ,Image} from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import FontistoIcon from "react-native-vector-icons/Fontisto"
 import { useEffect } from 'react';
@@ -26,7 +26,7 @@ export const StaffScreen = (props) => {
                         <View style={{ flex: 1, flexDiraction: "column" }}>
                             <View style={{ flex: 1, padding: 20, flexDirection: "row", justifyContent: "center" }}>
                                 {
-                                    staff.imgLink == null ?
+                                    staff.imgLink == null ||  staff.imgLink.length == 0 ?
                                         <FontistoIcon name="doctor" size={100} color={"#00ADA8"} /> :
                                         <Image source={{ uri: staff.imgLink }} style={styles.imageStyle} />
                                 }
@@ -46,11 +46,11 @@ export const StaffScreen = (props) => {
                                 padding: 3,
                                 margin: 5
                             }}></View>
-                            <Text style={{ flex: 1, padding: 20, fontSize: 20,  color: "black" }}>
+                            <Text style={{ flex: 1, padding: 20, fontSize: 20,  color: "black"}}>
                                 {staff.description != null ? " \t "+staff.description.replace("<br/>","\n \t") : ""}
                             </Text>
                             {
-                                staff.phoneNumber!=null ?
+                                staff.phoneNumber!=null &&  staff.phoneNumber.length != 0 ?
                                     <View>
                                         <Text style={{ flex: 1, padding: 20, fontSize: 20, color: "black" }}>    Связаться со специалистом можно через WhatsApp по номеру :
                                         </Text>

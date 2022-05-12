@@ -11,8 +11,10 @@
     "build_apk": "./gradlew assembleRelease"
   },
   "dependencies": {
+    "@gluons/react-native-fetch-with-timeout": "^0.0.1",
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-community/netinfo": "^8.2.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/drawer": "^6.1.8",
     "@react-navigation/material-top-tabs": "^6.0.6",
