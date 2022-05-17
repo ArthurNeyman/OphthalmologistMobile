@@ -51,19 +51,13 @@ export const HomeStackNavigator = (props) => {
         <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
-                header: header,
-                animationEnabled: false
+                headerShown: false
             }} >
             <Stack.Screen name="Home" component={props => <HomeScreen {...props} />} />
-            <Stack.Screen name="NewsList" component={props => <NewsListScreen {...props} />} />
-            <Stack.Screen name="HowToSaveEyes" component={props => <HowSaveEyesightScreen {...props} />} />
-            <Stack.Screen name="EyeTreatMethods" component={props => <TreatMethodsScreen {...props} />} />
-            <Stack.Screen name="News" component={props => <NewsScreen {...props} />} />
             <Stack.Screen name="Contacts" component={(props) => <ContactsScreen {...props} />} />
             <Stack.Screen name="Route" component={(props) => <RouteScreen {...props} />} />
             <Stack.Screen name="Aboute" component={(props) => <AbouteScreen {...props} />} />
             <Stack.Screen name="QuastionsAndAnswers" component={(props) => <QuastionsAndAnswersScreen {...props} />} />
-
         </Stack.Navigator>
     );
 }
@@ -72,12 +66,11 @@ export const ServiceStackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                header: header
-            }}>
+                headerShown: false
+            }} >
             <Stack.Screen name="ServiceList" component={props => <ServiceListScreen {...props} />} />
             <Stack.Screen name="Service" component={props => <ServiceScreen {...props} />} />
             <Stack.Screen name="Staff" component={props => <StaffScreen {...props} />} />
-
         </Stack.Navigator>
     );
 }
@@ -86,12 +79,10 @@ export const StaffStackNavigator = () => {
     return (
         <Stack.Navigator
             screenOptions={{
-                header: header,
-                animationEnabled: false
+                headerShown: false
             }} >
             <Stack.Screen name="StaffList" component={StaffListScreen} />
             <Stack.Screen name="Staff" component={StaffScreen} />
-            <Stack.Screen name="AskQuestion" component={props => <AskQuestionScreen {...props} />} />
         </Stack.Navigator>
     );
 }

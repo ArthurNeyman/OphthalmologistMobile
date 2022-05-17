@@ -9,7 +9,8 @@ import { Provider } from "react-redux"
 import Store from "./react native/redux/store"
 
 import SplashScreen from 'react-native-splash-screen'
-
+import { StatusBar } from 'react-native';
+import BottomMenuNavigator from './react native/navigation/bottomMenuNavigator';
 const App = () => {
 
   useEffect(() => {
@@ -19,7 +20,8 @@ const App = () => {
   return (
     <Provider store={Store}>
       <NavigationContainer>
-        <DrawerMenuNavigator />
+      <StatusBar translucent backgroundColor='transparent' />
+        <BottomMenuNavigator />
       </NavigationContainer>
     </Provider>
   )

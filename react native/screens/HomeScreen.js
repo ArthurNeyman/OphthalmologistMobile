@@ -23,12 +23,12 @@ const HomeScreen = (props) => {
       {
         loadData ? <Loader /> :
           <ScrollView>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
               <Image
                 style={{ width: "100%" }}
                 source={require('../../src/images/HomePageImage1.png')} />
-              <View style={{ position: "absolute", justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ fontSize: 30, color: "white", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "black"}}>{clinic_info.name}</Text>
+              <View style={{ position: "absolute", justifyContent: "center", alignItems: "center",paddingTop:30  }}>
+                <Text style={{ fontSize: 30, color: "white", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "black" }}>{clinic_info.name}</Text>
               </View>
             </View>
             <View style={{ padding: 10 }} >
@@ -67,22 +67,6 @@ const HomeScreen = (props) => {
                   </View>
                 </Card>
               </TouchableOpacity>
-
-              <TouchableOpacity style={{ flex: 1 }}
-                onPress={() => props.navigation.navigate("NewsList")}>
-
-                <Card>
-                  <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
-                    <FontAwesomeIcon name="newspaper-o" size={30} color={theme.currentMainColor} />
-                    <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Новости</Text>
-                  </View>
-                </Card>
-
-              </TouchableOpacity>
-            </View>
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
-
-
               <TouchableOpacity style={{ flex: 1 }}
                 onPress={() => props.navigation.navigate("Route", { adddressInfo: clinic_info.address })}>
                 <Card>
@@ -92,7 +76,8 @@ const HomeScreen = (props) => {
                   </View>
                 </Card>
               </TouchableOpacity>
-
+            </View>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
               <TouchableOpacity style={{ flex: 1 }}
                 onPress={() => props.navigation.navigate("Contacts", { contacts: clinic_info.contacts })}>
 
