@@ -48,13 +48,17 @@ const StaffListScreen = (props) => {
   return (
     <>
       {
-        loadData ? <Loader /> : <ScrollView style={{ margin: 15 }}>
+        loadData ? <Loader /> : 
+        <View style={{paddingTop:50}}>
+        <ScrollView style={{ margin: 15 }}
+        showsVerticalScrollIndicator={false}>
           {
             staffList.map(el => {
               return <StaffCard staff={el} navigateProfile={() => props.navigation.navigate("Staff", { id: el.id })} />
             })
           }
         </ScrollView>
+        </View>
       }
     </>
   );

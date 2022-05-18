@@ -78,14 +78,14 @@ const ServiceScreen = (props) => {
         <>
             {
                 loadData ? <Loader /> :
-                    <ScrollView>
-                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 25, padding: 10, paddingTop: 30, textAlign: "center" }}>
+                    <ScrollView  showsVerticalScrollIndicator={false}>
+                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 25, padding: 10, paddingTop: 50, textAlign: "center" }}>
                             {service.name}
                         </Text>
                         {
                             service.description ?
                                 <Text style={styles.text}>
-                                    {" \t "+service.description.split("<br/>").join("\n \t ")}
+                                    {" \t " + service.description.split("<br/>").join("\n \t ")}
                                 </Text> :
                                 <></>
                         }
@@ -104,10 +104,11 @@ const ServiceScreen = (props) => {
                         }
                         <View style={{ padding: 5 }}>
                             <Text style={{ fontSize: 22, paddingBottom: 10, color: "black", textAlign: "center" }}>
-                                {service.doctors && service.doctors.length > 1 ? "Сотрудники оказывающие" : "Сотрудник оказывающий"} услугу
+                                {service.doctors && service.doctors.length > 0 ?
+                                    service.doctors.length > 1 ? "Сотрудники оказывающие услугу" : "Сотрудник оказывающий услугу" : ""}
                             </Text>
                             {
-                                service.doctors ? service.doctors.map(el => <TouchableOpacity onPress={() => { props.navigation.navigate("Staff", { id: el.id }) }}>
+                                service.doctors && service.doctors.length > 0 ? service.doctors.map(el => <TouchableOpacity onPress={() => { props.navigation.navigate("Staff", { id: el.id }) }}>
                                     <Card style={{ padding: 5, flex: 1 }}>
                                         <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                                             <View style={{ flex: 1, padding: 10, justifyContent: "center", alignItems: "center" }}>
@@ -135,10 +136,10 @@ const styles = StyleSheet.create({
     },
     item: {
     },
-    text:{
-        color: "black", 
+    text: {
+        color: "black",
         fontSize: 20,
-        padding:10
+        padding: 10
     }
 });
 

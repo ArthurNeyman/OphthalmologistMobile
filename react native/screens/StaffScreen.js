@@ -22,7 +22,8 @@ export const StaffScreen = (props) => {
         <>
             {
                 loadData ? <Loader /> :
-                    <ScrollView>
+                    <ScrollView style={{paddingTop:50}}
+                    showsVerticalScrollIndicator={false}>
                         <View style={{ flex: 1, flexDiraction: "column" }}>
                             <View style={{ flex: 1, padding: 20, flexDirection: "row", justifyContent: "center" }}>
                                 {

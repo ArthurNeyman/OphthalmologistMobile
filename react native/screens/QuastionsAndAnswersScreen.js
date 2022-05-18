@@ -24,32 +24,32 @@ const QuastionsAndAnswersScreen = () => {
         <>
             {
                 loadData ? <Loader /> :
-                    <ScrollView style={{ paddingTop: 0 }}>
-                        {
-                            answers.map(answer =>
-                                <>
-                                    <View style={{ padding: 10 }}>
-                                        <DropDownItem
-                                            // invisibleImage={QUESTION}        
-                                            // visibleImage={ANSWER}
-                                            header={
-                                                <View style={{ flex: 1, flexDirection: "row", padding: 5}}>
-                                                    <Text style={{ backgroundColor:"#00ADA8",borderRadius:10,flex: 6, fontSize: 24, color: "white", fontFamily: "roboto", fontWeight: "bold",padding:5}} >
-                                                        {answer.question}
-                                                    </Text>
-                                                    <Text style={{flex:1}}></Text>
+                    <View style={{ paddingTop: 50 }}>
+                        <ScrollView >
+                            {
+                                answers.map(answer =>
+                                    <>
+                                        <View style={{ padding: 10 }}>
+                                            <DropDownItem
+                                                header={
+                                                    <View style={{ flex: 1, flexDirection: "row", padding: 5 }}>
+                                                        <Text style={{ backgroundColor: "#00ADA8", borderRadius: 10, flex: 6, fontSize: 24, color: "white", fontFamily: "roboto", fontWeight: "bold", padding: 5 }} >
+                                                            {answer.question}
+                                                        </Text>
+                                                        <Text style={{ flex: 1 }}></Text>
+                                                    </View>
+                                                }>
+                                                <View style={{ width: "100%", flex: 1, flexDirection: "row" }}>
+                                                    <Text style={{ flex: 1 }}></Text>
+                                                    <Text style={{ backgroundColor: "#00ABB1", borderRadius: 10, flex: 3, fontSize: 22, color: "white", fontFamily: "roboto", fontWeight: "bold", textAlign: "left", padding: 5 }}>{"    " + answer.answer}</Text>
                                                 </View>
-                                            }>
-                                            <View style={{ width:"100%", flex: 1, flexDirection: "row"}}>
-                                                <Text style={{ flex: 1 }}></Text>
-                                                <Text style={{backgroundColor:"#00ABB1",borderRadius:10, flex: 3, fontSize: 22, color: "white", fontFamily: "roboto",fontWeight:"bold",textAlign:"left",padding:5}}>{"    "+answer.answer}</Text>
-                                            </View>
-                                        </DropDownItem>
-                                    </View>
-                                </>
-                            )
-                        }
-                    </ScrollView>
+                                            </DropDownItem>
+                                        </View>
+                                    </>
+                                )
+                            }
+                        </ScrollView>
+                    </View>
             }
         </>
     )

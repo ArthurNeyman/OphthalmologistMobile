@@ -10,7 +10,7 @@ const RouteScreen = (props) => {
     const address = props.route.params.adddressInfo
     return (
         <>
-            <ScrollView>
+            <ScrollView style={{paddingTop:50}}>
                 <View style={{ backgroundColor: "white", margin: 10,padding:5 }}>
                     <Text style={{ fontSize: 20, color: "black", textAlign: "center",paddingTop:30 }}>Мы находимся по адресу: {"\n"+address.address}</Text>
                     <Text style={{ fontSize: 20, color: "black", textAlign: "justify",paddingTop:10 }}></Text>

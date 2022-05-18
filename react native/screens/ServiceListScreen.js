@@ -22,7 +22,9 @@ const ServiceListScreen = (props) => {
     return (
         <>
             {loadData ? <Loader /> :
-                <ScrollView>
+            <View style={{paddingTop:50}}>
+                <ScrollView
+                 showsVerticalScrollIndicator={false} >
                     <View style={{ padding: 5 }}>
                         {
                             serviceList.map(el => {
@@ -35,6 +37,7 @@ const ServiceListScreen = (props) => {
                         }
                     </View>
                 </ScrollView>
+                </View>
             }
         </>
     )

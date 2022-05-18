@@ -1,33 +1,19 @@
 import * as React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
-import { getHeaderTitle } from '@react-navigation/elements';
-
-import ToolBarMenu from '../components/ToolBarMenuComponent';
-
 import StaffListScreen from "../screens/StaffListScreen"
 import HomeScreen from '../screens/HomeScreen';
-import ServiceCatagoryListScreen from '../screens/ServiceCategoryListScreen';
-import NewsListScreen from '../screens/NewsListScreen'
 import ServiceScreen from '../screens/ServiceScreen'
-import HowSaveEyesightScreen from '../screens/HowSaveEyesightScreen'
-import TreatMethodsScreen from '../screens/EyeTreatmentMethodsScreen'
-import AskQuestionScreen from '../screens/AskQuestionScreen'
-import NewsScreen from '../screens/NewsScreen';
 import ContactsScreen from '../screens/ContacsScreen';
 import RouteScreen from '../screens/RouteScreen';
 
-import { useSelector, useDispatch } from 'react-redux'
-
 import {
     GET_CLINIC_INFO,
-    GET_NEWS,
     GET_NEWS_LIST,
     GET_SERVICE_CATEGORIES,
     GET_STAFF_LIST
 } from '../redux/actions/types'
 import ServiceListScreen from '../screens/ServiceListScreen';
 import { StaffScreen } from '../screens/StaffScreen';
-import AbouteScreen from '../screens/AboutScreen';
 import QuastionsAndAnswersScreen from '../screens/QuastionsAndAnswersScreen';
 
 const Stack = createStackNavigator();
@@ -40,12 +26,6 @@ const getTitleForToolBar = (selectedScreen) => {
         case GET_STAFF_LIST: return "Сотрудники"
     }
 }
-
-const header = () => {
-    const { activeScreen } = useSelector(state => state.data)
-    return <ToolBarMenu title={getTitleForToolBar(activeScreen)} />
-}
-
 export const HomeStackNavigator = (props) => {
     return (
         <Stack.Navigator
@@ -56,7 +36,6 @@ export const HomeStackNavigator = (props) => {
             <Stack.Screen name="Home" component={props => <HomeScreen {...props} />} />
             <Stack.Screen name="Contacts" component={(props) => <ContactsScreen {...props} />} />
             <Stack.Screen name="Route" component={(props) => <RouteScreen {...props} />} />
-            <Stack.Screen name="Aboute" component={(props) => <AbouteScreen {...props} />} />
             <Stack.Screen name="QuastionsAndAnswers" component={(props) => <QuastionsAndAnswersScreen {...props} />} />
         </Stack.Navigator>
     );
