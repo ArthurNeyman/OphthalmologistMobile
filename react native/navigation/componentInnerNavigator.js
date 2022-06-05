@@ -18,14 +18,6 @@ import QuastionsAndAnswersScreen from '../screens/QuastionsAndAnswersScreen';
 
 const Stack = createStackNavigator();
 
-const getTitleForToolBar = (selectedScreen) => {
-    switch (selectedScreen) {
-        case GET_CLINIC_INFO: return "О нас"
-        case GET_NEWS_LIST: return "Новости"
-        case GET_SERVICE_CATEGORIES: return "Услуги"
-        case GET_STAFF_LIST: return "Сотрудники"
-    }
-}
 export const HomeStackNavigator = (props) => {
     return (
         <Stack.Navigator

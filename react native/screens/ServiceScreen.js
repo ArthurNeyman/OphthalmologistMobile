@@ -11,6 +11,7 @@ import Loader from '../app_loader';
 
 const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
 
+//скрин услуги
 const ServiceScreen = (props) => {
 
     const carouselRef = React.useRef(FlatList);

@@ -9,6 +9,7 @@ import { linkToWhatsApp } from "../redux/actions/application_actions";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
 import Loader from '../app_loader';
 
+//скрин сотрудника
 export const StaffScreen = (props) => {
 
     const { staff, loadData, theme } = useSelector(state => state.data);
@@ -22,7 +23,8 @@ export const StaffScreen = (props) => {
         <>
             {
                 loadData ? <Loader /> :
-                    <ScrollView style={{paddingTop:50}}
+                <View style={{paddingTop:50}}>
+                    <ScrollView
                     showsVerticalScrollIndicator={false}>
                         <View style={{ flex: 1, flexDiraction: "column" }}>
                             <View style={{ flex: 1, padding: 20, flexDirection: "row", justifyContent: "center" }}>
@@ -71,6 +73,7 @@ export const StaffScreen = (props) => {
 
                         </View>
                     </ScrollView>
+                    </View>
             }
         </>
     )

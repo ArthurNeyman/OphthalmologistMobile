@@ -8,6 +8,7 @@ import { getClinicInfo } from "../redux/actions/server_actions"
 import { Card } from 'react-native-material-ui';
 import Loader from '../app_loader';
 
+//скрин домашняя
 const HomeScreen = (props) => {
 
   const { clinic_info, loadData, theme } = useSelector(state => state.data)
@@ -23,11 +24,11 @@ const HomeScreen = (props) => {
       {
         loadData ? <Loader /> :
           <ScrollView>
-            <View style={{ flex: 1, justifyContent: "center", alignItems: "center"}}>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
               <Image
                 style={{ width: "100%" }}
                 source={require('../../src/images/HomePageImage1.png')} />
-              <View style={{ position: "absolute", justifyContent: "center", alignItems: "center",paddingTop:30  }}>
+              <View style={{ position: "absolute", justifyContent: "center", alignItems: "center", paddingTop: 30 }}>
                 <Text style={{ fontSize: 30, color: "white", textAlign: "center", padding: 5, fontWeight: "bold", textShadowRadius: 5, textShadowColor: "black" }}>{clinic_info.name}</Text>
               </View>
             </View>
@@ -80,23 +81,19 @@ const HomeScreen = (props) => {
             <View style={{ flex: 1, flexDirection: "row", justifyContent: "center" }}>
               <TouchableOpacity style={{ flex: 1 }}
                 onPress={() => props.navigation.navigate("Contacts", { contacts: clinic_info.contacts })}>
-
                 <Card>
                   <View style={{ flex: 1, padding: 5, alignItems: 'center' }}>
                     <FontAwesomeIcon name="phone" size={30} color={theme.currentMainColor} />
                     <Text style={{ fontSize: 22, color: theme.currentMainColor }}>Контакты</Text>
                   </View>
                 </Card>
-
               </TouchableOpacity>
             </View>
-
           </ScrollView>
       }
     </>
   );
 };
-
 
 const styles = StyleSheet.create({
   simpleText: {

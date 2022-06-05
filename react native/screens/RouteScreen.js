@@ -1,26 +1,31 @@
 import React from "react";
-
 import { Text, StyleSheet, View, Linking, Image, Dimensions } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5"
 
 const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
 
+//скрин как добраться
 const RouteScreen = (props) => {
     const address = props.route.params.adddressInfo
     return (
         <>
-            <ScrollView style={{paddingTop:50}}>
-                <View style={{ backgroundColor: "white", margin: 10,padding:5 }}>
-                    <Text style={{ fontSize: 20, color: "black", textAlign: "center",paddingTop:30 }}>Мы находимся по адресу: {"\n"+address.address}</Text>
-                    <Text style={{ fontSize: 20, color: "black", textAlign: "justify",paddingTop:10 }}></Text>
-                    <Text style={{ color: "black", fontSize: 19, textAlign: "left" }}>{" \t "+address.comments.replace("<br/>", "\n \t")}</Text>
-                    <View style={{alignItems:"center",paddingBottom:10,paddingTop:20}}>
-                    <Image style={{ height: windowsHeight * 0.24, resizeMode: "contain"}} source={require('../../src/images/opth.jpg')} />
+            <ScrollView>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    <Image style={{ width: windowWidth, height: windowsHeight / 2.8 }} source={require('../../src/images/opth.jpg')} />
+                </View>
+                <View style={{ flex:1,backgroundColor: "white" }}>
+                    <View style={{ padding: 10 }}>
+                        <Text style={{ fontSize: 20, color: "black", textAlign: "center", paddingTop: 10 }}>Мы находимся по адресу: {"\n" + address.address}</Text>
+                        <Text style={{ fontSize: 20, color: "black" }}></Text>
+                        <Text style={{ fontSize: 20, color: "black" }}>{" \t " + address.comments.replace("<br/>", "\n \t")}</Text>
+                        <View style={{ alignItems: "center" }}>
+                        </View>
                     </View>
-                    <TouchableOpacity  style={{paddingBottom:30}}onPress={() => Linking.openURL('https://www.google.com/maps/search/?api=1&query=' + address.address)}>
+                    <View style={{flex:1}}>
+                    <TouchableOpacity onPress={() => Linking.openURL('https://www.google.com/maps/search/?api=1&query=' + address.address)}>
                         <Text style={{ fontSize: 25, textAlign: "center", color: "#00ADA8", padding: 10 }}>Открыть на карте</Text>
                     </TouchableOpacity>
+                    </View>
                 </View>
             </ScrollView>
         </>
@@ -28,3 +33,5 @@ const RouteScreen = (props) => {
 }
 
 export default RouteScreen;
+
+const styles = StyleSheet.create({})

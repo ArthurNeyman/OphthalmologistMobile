@@ -4,6 +4,8 @@ import { BottomNavigation } from 'react-native-material-ui';
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons"
 import { routes } from '../redux/actions/application_actions';
 
+
+//компонент нижнего меню
 const BottomMenuComponent = (props) => {
 
     const Action = (props) => {
@@ -13,12 +15,12 @@ const BottomMenuComponent = (props) => {
             icon={<SimpleLineIcon size={25} name={props.route.iconName} />}
             label={props.route.viewName}
             onPress={() => {
-                if (props.index == 0) 
-                {
+                if (props.index == 0) {
                     props.navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Home' }]
-                    })}
+                        index: 0,
+                        routes: [{ name: 'Home' }]
+                    })
+                }
                 else
                     props.navigation.navigate(props.route.routeName)
             }}

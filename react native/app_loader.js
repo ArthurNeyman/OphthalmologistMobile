@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet,Text } from 'react-native'
 import LottieView from "lottie-react-native"
 
+//анимация глаза при загрузке страниц
 const Loader = () => {
     return (
         <View style={[StyleSheet.absoluteFillObject, styles.container]}>

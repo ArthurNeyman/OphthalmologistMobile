@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Image } from "react-native";
-import { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from "react-native";
+import {  useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getAnswers } from '../redux/actions/server_actions';
 import Loader from '../app_loader';
@@ -8,9 +8,8 @@ import DropDownItem from 'react-native-drop-down-item';
 import { ScrollView } from 'react-native-gesture-handler';
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons"
 
-const QUESTION = require('../../src/images/question.png')
-const ANSWER = require('../../src/images/answer.png')
 
+//скрин вопрос/ответ
 const QuastionsAndAnswersScreen = () => {
 
     const { answers, loadData } = useSelector(state => state.data)
@@ -55,3 +54,7 @@ const QuastionsAndAnswersScreen = () => {
     )
 }
 export default QuastionsAndAnswersScreen;
+
+const styles = StyleSheet.create({
+
+})
