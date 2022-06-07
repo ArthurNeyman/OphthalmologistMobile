@@ -4,6 +4,7 @@
  - NodeJs https://nodejs.org/ru/
  - Android Studio и эмулятор и SDK https://developer.android.com/studio/run/emulator
  - Android Sdk
+
 Запуск проекта
  1. Отрыть коренную папку проекта  в среде разработки (например VSCode android\app\build\outputs\apk\release)
  3. Выполнить команду npm install
