@@ -8,11 +8,12 @@ import Loader from '../app_loader';
 import { useEffect } from 'react';
 import { setActiveScreen } from '../redux/actions/application_actions';
 import StaffCard from '../components/StaffCard';
+import { StatusBar } from 'react-native';
 
 //скрин список сотрудников
 const StaffListScreen = (props) => {
 
-  const { staffList, loadData } = useSelector(state => state.data);
+  const { staffList, loadData,theme } = useSelector(state => state.data);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -25,8 +26,8 @@ const StaffListScreen = (props) => {
     <>
       {
         loadData ? <Loader /> : 
-        <View style={{paddingTop:50}}>
-        <ScrollView style={{ margin: 15 }}
+        <View style={{paddingTop:StatusBar.currentHeight}}>
+        <ScrollView 
         showsVerticalScrollIndicator={false}>
           {
             staffList.map(el => {

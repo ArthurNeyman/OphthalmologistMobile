@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome"
 import ContactCard from "../components/ContactCard";
 import { linkToWhatsApp } from "../redux/actions/application_actions";
+import { StatusBar } from 'react-native';
 
 const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
 
@@ -12,7 +13,7 @@ const ContactsScreen = (props) => {
     const contacts = props.route.params.contacts
     return (
         <View>
-            <ScrollView>
+            <ScrollView style={{ paddingTop: StatusBar.currentHeight }}>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
                     <Image
                         style={{ width: windowWidth, height: windowsHeight / 2.8 }}
@@ -25,14 +26,15 @@ const ContactsScreen = (props) => {
                     <TouchableOpacity
                         onPress={() => { linkToWhatsApp(contacts.mainContacts[0].contact) }}
                         style={{ justifyContent: "center", flexDirection: "row", alignItems: "center", padding: 0 }}>
+                        <Text style={{ ...styles.boldText, fontSize: 30 }}>{contacts.mainContacts[0].contact}</Text>
                         <FontAwesomeIcon style={{ padding: 15 }} name="whatsapp" color={"#00ADA8"} size={50} />
-                        <Text style={{ ...styles.boldText, fontSize: 25 }}>{contacts.mainContacts[0].contact}</Text>
                     </TouchableOpacity>
                     <View >
                         <Text style={{ ...styles.boldText, paddingBottom: 15 }}>Другие контакты</Text>
                         {contacts.contacts.map(contact => <ContactCard item={contact} />)}
                     </View>
                 </View>
+                <View style={{ height: 50 }}></View>
             </ScrollView>
         </View>
     )

@@ -13,7 +13,7 @@ import { StatusBar } from 'react-native';
 //скрин списка услуг
 const ServiceListScreen = (props) => {
 
-    const { serviceList, loadData } = useSelector(state => state.data)
+    const { serviceList, loadData,theme } = useSelector(state => state.data)
     const dispatch = useDispatch()
 
     useEffect(() => {

@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getServiceById } from '../redux/actions/server_actions';
 import Loader from '../app_loader';
+import { StatusBar } from 'react-native';
 
 const { width: windowWidth, height: windowsHeight } = Dimensions.get('window');
 
@@ -66,7 +67,7 @@ const ServiceScreen = (props) => {
                 }}>
                 <View >
                     <View>
-                        <Text style={{ padding: 10, fontSize: 20, textAlign: "center", color: "black" }}>{item.name}</Text>
+                        <Text style={{ padding: 10, fontSize: 22, textAlign: "center", color: theme.currentMainColor }}>{item.name}</Text>
                     </View>
                     <View>
                         <Image style={{ width: windowWidth * 0.9, height: windowsHeight * 0.35, resizeMode: "contain" }} source={Image_Http_URL} />
@@ -79,14 +80,14 @@ const ServiceScreen = (props) => {
         <>
             {
                 loadData ? <Loader /> :
-                    <ScrollView  showsVerticalScrollIndicator={false}>
-                        <Text style={{ color: "black", fontWeight: "bold", fontSize: 25, padding: 10, paddingTop: 50, textAlign: "center" }}>
+                    <ScrollView  showsVerticalScrollIndicator={false} style={{backgroundColor:"white",paddingTop:StatusBar.currentHeight,minHeight:windowsHeight}}>
+                        <Text style={{ color: theme.currentMainColor, fontWeight: "bold", fontSize: 25, padding: 10, textAlign: "center" }}>
                             {service.name}
                         </Text>
                         {
                             service.description ?
                                 <Text style={styles.text}>
-                                    {" \t " + service.description.split("<br/>").join("\n \t ")}
+                                    {" \t " + service.description.split("<br/>").join("\n ")}
                                 </Text> :
                                 <></>
                         }
@@ -110,14 +111,14 @@ const ServiceScreen = (props) => {
                             </Text>
                             {
                                 service.doctors && service.doctors.length > 0 ? service.doctors.map(el => <TouchableOpacity onPress={() => { props.navigation.navigate("Staff", { id: el.id }) }}>
-                                    <Card style={{ padding: 5, flex: 1 }}>
+                                    <Card style={{container:{borderRadius:1,borderColor:theme.currentMainColor,borderWidth:2,padding:5,flex:1}}}>
                                         <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                                             <View style={{ flex: 1, padding: 10, justifyContent: "center", alignItems: "center" }}>
                                                 <SimpleLineIcon color={"#00ADA8"} size={35} name="user" />
                                             </View>
                                             <View style={{ flex: 4, padding: 5 }}>
                                                 <Text style={{ flex: 1, color: "black", fontSize: 18, fontWeight: "bold" }}>{el.first_name + " " + el.surname + " " + el.last_name}</Text>
-                                                <Text style={{ flex: 1, color: "black", fontSize: 15 }}>{el.position}</Text>
+                                                <Text style={{ flex: 1, color: theme.currentMainColor, fontSize: 15 }}>{el.position}</Text>
                                             </View>
                                         </View>
                                     </Card>
@@ -125,6 +126,7 @@ const ServiceScreen = (props) => {
                                 ) : <></>
                             }
                         </View>
+                        <View style={{height:100}}></View>
                     </ScrollView>
             }
         </>
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
     text: {
         color: "black",
         fontSize: 20,
-        padding: 10
+        padding: 10,
     }
 });
 

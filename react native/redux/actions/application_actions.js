@@ -4,7 +4,7 @@ import {
 } from './types'
 import React from 'react'
 import SimpleLineIcon from "react-native-vector-icons/SimpleLineIcons"
-import { Linking } from "react-native";
+import { Linking ,Alert } from "react-native";
 
 export const routes =
 {
@@ -52,7 +52,7 @@ export const linkToWhatsApp= (contact) => {
         if (supported) {
             Linking.openURL("whatsapp://send?phone=" + contact);
         } else {
-            alert("Не могу открыть WhatsApp.Убедитесь что у вас устновлено приложение.")
+            Alert.alert("Ошибка перехода в чат WhatsApp","WhatsApp недоступен.Убедитесь что у вас устновлено приложение.")
         }
     });
 }
